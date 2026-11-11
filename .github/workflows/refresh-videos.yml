@@ -1,0 +1,24 @@
+name: Refresh the latest videos
+on:
+  schedule:
+    - cron: "17 9 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 scripts/refresh_videos.py
+      - name: Commit and rebuild the site if the list changed
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet; then echo "No new videos"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "Refresh the latest videos"
+          git push
+          gh api -X POST "repos/${{ github.repository }}/pages/builds" || true

@@ -1,0 +1,137 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Videos · DomZaddy Games</title>
+<meta name="description" content="Trailers, dev stories and Shorts from DomZaddy Games.">
+<link rel="icon" href="media/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="media/favicon-32.png">
+<link rel="apple-touch-icon" href="media/apple-touch-icon.png">
+<meta name="theme-color" content="#0b1114">
+<link rel="canonical" href="https://domzaddy.com/videos.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DomZaddy Games">
+<meta property="og:title" content="Videos · DomZaddy Games">
+<meta property="og:description" content="Trailers, dev stories and Shorts from DomZaddy Games.">
+<meta property="og:url" content="https://domzaddy.com/videos.html">
+<meta property="og:image" content="https://domzaddy.com/media/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@dom_zaddy">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Anton&family=Inter:wght@400;500;600;700&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css"><style>
+  .feat { display: block; position: relative; border-radius: 18px; overflow: hidden; border: 1px solid var(--line-2); box-shadow: 0 30px 80px rgba(0,0,0,.55); aspect-ratio: 16 / 9; background: #000; margin-top: 8px; }
+  .feat img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.2,.8,.2,1); }
+  .feat:hover img { transform: scale(1.04); }
+  .feat::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(6,10,12,.92) 4%, rgba(6,10,12,0) 55%); pointer-events: none; }
+  .feat .play { width: 96px; height: 96px; z-index: 2; animation: pulse 2.6s ease-in-out infinite; }
+  .feat .play svg { width: 34px; height: 34px; }
+  .feat:hover .play { transform: scale(1.12); background: var(--gold); } .feat:hover .play svg { fill: #1a1206; }
+  @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(255,194,61,.5); } 50% { box-shadow: 0 0 0 22px rgba(255,194,61,0); } }
+  .feat .cap { position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; padding: 28px 32px; }
+  .feat .cap h2 { font-family: var(--f-display); font-weight: 400; font-size: clamp(22px, 3vw, 38px); line-height: 1.12; margin: 10px 0 6px; }
+  .feat .cap small { color: var(--dim); font-size: 13px; }
+  .trailers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .vbody { padding: 14px 16px 18px; } .vbody h3 { font-size: 15px; font-weight: 600; line-height: 1.4; } .vbody small { display: block; margin-top: 6px; color: var(--dim); font-size: 12px; }
+  .vbody .tag { margin-bottom: 10px; }
+  .chips { display: flex; gap: 10px; flex-wrap: wrap; }
+  .chip { padding: 10px 18px; border-radius: 99px; border: 1.5px solid var(--line); font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); transition: all .2s; }
+  .chip:hover { border-color: var(--gold); color: var(--gold); }
+  .chip.on { background: var(--gold); border-color: var(--gold); color: #1a1206; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .grid .card[hidden] { display: none; }
+  .shorts-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
+  .short { position: relative; border-radius: 12px; overflow: hidden; aspect-ratio: 9 / 16; background: #000; border: 1px solid var(--line); transition: transform .3s, border-color .3s; }
+  .short:hover { transform: translateY(-6px); border-color: var(--line-2); }
+  .short img { width: 100%; height: 100%; object-fit: cover; }
+  .short span.t { position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 12px 12px; font-size: 13px; font-weight: 600; line-height: 1.35; background: linear-gradient(to top, rgba(0,0,0,.92), transparent); }
+  .short .play { width: 46px; height: 46px; } .short .play svg { width: 16px; height: 16px; }
+  .short:hover .play { background: var(--gold); transform: scale(1.1); } .short:hover .play svg { fill: #1a1206; }
+  .sub-cta { display: flex; align-items: center; justify-content: space-between; gap: 28px; flex-wrap: wrap; padding: 34px 38px; border-radius: 18px; border: 1px solid rgba(255,61,61,.4);
+    background: radial-gradient(ellipse at 0% 0%, rgba(255,61,61,.22), transparent 60%), var(--card); }
+  .sub-cta h3 { font-family: var(--f-display); font-weight: 400; font-size: clamp(24px, 3vw, 36px); margin-bottom: 8px; }
+  .sub-cta p { color: var(--muted); max-width: 520px; line-height: 1.6; }
+  .btn-yt { background: var(--yt); color: #fff; font-size: 16px; padding: 20px 34px; box-shadow: 0 8px 30px rgba(255,61,61,.4); }
+  .btn-yt:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 14px 40px rgba(255,61,61,.6); }
+  .soc-grid { margin-top: 22px; }
+  .auto-note { margin-top: 34px; font-size: 12px; color: var(--dim); letter-spacing: .04em; }
+  @media (max-width: 1000px) { .trailers { grid-template-columns: 1fr 1fr; } .grid { grid-template-columns: 1fr 1fr; } .shorts-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 640px) { .trailers, .grid { grid-template-columns: 1fr; } .shorts-grid { grid-template-columns: repeat(2, 1fr); } .feat .cap { padding: 16px; } .feat .play { width: 68px; height: 68px; } .sub-cta { padding: 24px; } .btn-yt { width: 100%; justify-content: center; } }
+</style></head>
+<body data-page="videos">
+  <section class="page-hero" style="min-height:0;padding-bottom:50px"><div class="bg"><img src="media/utk_story_124.jpg" alt=""></div>
+    <div class="wrap"><div class="eyebrow">The channel</div><h1>Videos</h1><p class="lead">Trailers, dev stories and Shorts from DomZaddy Games. Watch the games get made.</p></div></section>
+
+  <section class="section" style="padding-top:20px">
+    <div class="wrap">
+      <a class="feat rv" id="feat" href="#"><img alt=""><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><div class="cap"><span class="tag">Newest video</span><h2></h2><small></small></div></a>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="wrap">
+      <div class="head-row rv"><div><div class="eyebrow">Official</div><h2 class="h2">Trailers</h2></div></div>
+      <div class="trailers rv" id="trailers"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="head-row rv"><div><div class="eyebrow">Fresh from YouTube</div><h2 class="h2">Latest uploads</h2></div>
+        <div class="chips" id="chips"><button class="chip on" data-f="all">All</button><button class="chip" data-f="trailer">Trailers</button><button class="chip" data-f="dev">Dev stories</button></div></div>
+      <div class="grid rv" id="grid"></div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="wrap">
+      <div class="head-row rv"><div><div class="eyebrow">Under a minute</div><h2 class="h2">Shorts</h2></div></div>
+      <div class="shorts-grid rv" id="shorts"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="head-row rv"><div><div class="eyebrow">Follow everywhere</div><h2 class="h2">Never miss a video</h2><p class="lead">New trailers and dev stories land on every channel.</p></div></div>
+      <div class="sub-cta rv"><div><h3>Subscribe on YouTube</h3><p>Join the journey from the first prototype to launch day.</p></div>
+        <a class="btn btn-yt" href="https://www.youtube.com/@DomZaddy?sub_confirmation=1" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Subscribe</a></div>
+      <div class="soc-grid rv" id="socGrid"></div>
+      <p class="auto-note rv">This list refreshes by itself every day. </p>
+    </div>
+  </section>
+
+  <script src="chrome.js"></script>
+  <script>
+    const PLAY = '<span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>';
+    const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+    const fmt = d => new Date(d + 'T12:00:00').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    const isTrailer = v => /trailer/i.test(v.title);
+    const card = v => `<a class="card" href="${v.url}" data-yt="${v.id}" data-kind="${isTrailer(v) ? 'trailer' : 'dev'}"><div class="media"><img src="https://i.ytimg.com/vi/${v.id}/hqdefault.jpg" alt="" loading="lazy">${PLAY}</div>
+      <div class="vbody"><span class="tag">${isTrailer(v) ? 'Trailer' : 'Dev story'}</span><h3>${esc(v.title)}</h3><small>${fmt(v.published)}</small></div></a>`;
+
+    document.getElementById('socGrid').innerHTML = DZ.SOC.map(s => `<a class="soc-tile" style="--c:${s.color}" href="${s.url}" target="_blank" rel="noopener">${DZ.icon(s)}<div><b>${s.name}</b><br><span>${s.handle}</span></div><i>${s.cta} →</i></a>`).join('');
+
+    fetch('media/videos.json').then(r => r.json()).then(list => {
+      const longs = list.filter(v => !v.short).sort((a, b) => b.published.localeCompare(a.published));
+      const f = longs[0], feat = document.getElementById('feat'), fi = feat.querySelector('img');
+      feat.href = f.url; feat.dataset.yt = f.id;
+      fi.onerror = function () { this.onerror = null; this.src = 'https://i.ytimg.com/vi/' + f.id + '/hqdefault.jpg'; };
+      fi.src = 'https://i.ytimg.com/vi/' + f.id + '/maxresdefault.jpg';
+      feat.querySelector('h2').textContent = f.title; feat.querySelector('small').textContent = fmt(f.published);
+
+      const byId = Object.fromEntries(list.map(v => [v.id, v]));
+      const tr = [['ZyV6upBPsC8', 'Keeps & Conquerors: Story Trailer'], ['C5WQlKd7hyU', 'Keeps & Conquerors: Teaser'], ['FAjyqbiJ_Tc', 'Under the Kingdom: Story Trailer'], ['X23FPsjCwL8', 'Under the Kingdom: Teaser']];
+      document.getElementById('trailers').innerHTML = tr.map(([id, name]) => { const v = byId[id] || { url: 'https://www.youtube.com/watch?v=' + id, published: '2026-11-10' };
+        return `<a class="card" href="${v.url}" data-yt="${id}"><div class="media"><img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="" loading="lazy">${PLAY}</div><div class="vbody"><span class="tag">Trailer</span><h3>${esc(name)}</h3><small>${fmt(v.published)}</small></div></a>`; }).join('');
+
+      document.getElementById('grid').innerHTML = longs.map(card).join('');
+      document.getElementById('chips').addEventListener('click', e => { const c = e.target.closest('.chip'); if (!c) return;
+        document.querySelectorAll('.chip').forEach(x => x.classList.toggle('on', x === c));
+        document.querySelectorAll('#grid .card').forEach(k => { k.hidden = c.dataset.f !== 'all' && k.dataset.kind !== c.dataset.f; }); });
+
+      const shorts = list.filter(v => v.short && !/^\s*#/.test(v.title));
+      document.getElementById('shorts').innerHTML = shorts.map(v => `<a class="short" href="${v.url}" data-yt="${v.id}" data-short><img src="https://i.ytimg.com/vi/${v.id}/oar2.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${v.id}/hqdefault.jpg'" alt="" loading="lazy">${PLAY}<span class="t">${esc(v.title.replace(/#\w+/g, '').trim())}</span></a>`).join('');
+      DZ.watch();
+    });
+    DZ.watch();
+  </script>
+</body></html>

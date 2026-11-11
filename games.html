@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Games · DomZaddy Games</title>
+<meta name="description" content="Keeps &amp; Conquerors and Under the Kingdom: features, screenshots, trailers and where to follow both games.">
+<link rel="icon" href="media/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="media/favicon-32.png">
+<link rel="apple-touch-icon" href="media/apple-touch-icon.png">
+<meta name="theme-color" content="#0b1114">
+<link rel="canonical" href="https://domzaddy.com/games.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DomZaddy Games">
+<meta property="og:title" content="Games · DomZaddy Games">
+<meta property="og:description" content="Keeps &amp; Conquerors and Under the Kingdom: features, screenshots, trailers and where to follow both games.">
+<meta property="og:url" content="https://domzaddy.com/games.html">
+<meta property="og:image" content="https://domzaddy.com/media/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@dom_zaddy">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Anton&family=Inter:wght@400;500;600;700&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+  :root { --vio: #7b4bd6; --vio-l: #a984ff; --vio-d: #2a1a4d; }
+  html { scroll-padding-top: 70px; }
+
+  /* split hero */
+  .split { position: relative; display: grid; grid-template-columns: 1fr 1fr; min-height: 78vh; overflow: hidden; background: #000; }
+  .half { position: relative; display: flex; align-items: flex-end; overflow: hidden; padding: 150px 0 64px; transition: flex .6s; }
+  .half img.bgimg, .half video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.4s cubic-bezier(.2, .8, .2, 1), opacity .7s; }
+  .half video { opacity: 0; }
+  .half.hot video.ready { opacity: 1; }
+  .half:hover img.bgimg, .half.hot img.bgimg { transform: scale(1.06); }
+  .half::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(11, 17, 20, 1) 3%, rgba(11, 17, 20, .45) 55%, rgba(11, 17, 20, .25)); }
+  .half.k::before, .half.u::before { content: ""; position: absolute; inset: 0; z-index: 1; mix-blend-mode: soft-light; opacity: .55; }
+  .half.k::before { background: radial-gradient(ellipse at 20% 100%, #c98a12, transparent 70%); }
+  .half.u::before { background: radial-gradient(ellipse at 80% 100%, var(--vio), transparent 70%); }
+  .half .in { position: relative; z-index: 2; padding: 0 clamp(20px, 4vw, 56px); width: 100%; }
+  .half.k .in { margin-left: auto; max-width: calc(var(--wrap) / 2); }
+  .half.u .in { max-width: calc(var(--wrap) / 2); }
+  .half .tags { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0 16px; }
+  .half .logo { height: 150px; filter: drop-shadow(0 8px 20px rgba(0, 0, 0, .7)); }
+  .half .ut { font-family: var(--f-utk); font-size: clamp(46px, 5vw, 78px); line-height: .95; text-shadow: 0 4px 24px rgba(0, 0, 0, .9); }
+  .split .divider { position: absolute; z-index: 3; left: 50%; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, transparent, rgba(244, 236, 217, .45), transparent); }
+  .split .eyebrow-top { position: absolute; z-index: 4; left: 0; right: 0; top: 118px; }
+
+  /* game sections */
+  .game-sec { position: relative; overflow: hidden; padding: 120px 0; }
+  .game-sec .pbg { position: absolute; left: 0; right: 0; top: -12%; height: 124%; background-size: cover; background-position: center; opacity: .22; will-change: transform; }
+  .game-sec::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, var(--ink) 0, transparent 14%, transparent 86%, var(--ink)); pointer-events: none; }
+  .game-sec > .wrap { position: relative; z-index: 2; }
+  #kc { background: #0c1517; --a: var(--gold); --a2: var(--teal-l); --adim: rgba(255, 194, 61, .1); --aline: rgba(255, 194, 61, .3); }
+  #utk { background: #0d0a14; --a: var(--vio-l); --a2: var(--vio); --adim: rgba(123, 75, 214, .14); --aline: rgba(169, 132, 255, .35); }
+  #utk .pbg { opacity: .3; }
+  #utk .eyebrow, #utk .link-arrow { color: var(--vio-l); } #utk .eyebrow::before { background: var(--vio-l); }
+  #kc .eyebrow { color: var(--teal-l); } #kc .eyebrow::before { background: var(--teal-l); }
+  .game-sec .tag { color: var(--a); background: var(--adim); border-color: var(--aline); }
+
+  .intro { display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: center; }
+  .intro .logo-kc { height: 190px; width: auto; filter: drop-shadow(0 10px 24px rgba(0, 0, 0, .7)); margin-bottom: 8px; }
+  .intro .title-utk { font-family: var(--f-utk); font-size: clamp(56px, 7vw, 104px); line-height: .92; color: var(--parch); text-shadow: 0 0 40px rgba(123, 75, 214, .55), 0 4px 24px rgba(0, 0, 0, .9); margin-bottom: 12px; }
+  .intro .tags { display: flex; gap: 8px; flex-wrap: wrap; margin: 14px 0 20px; }
+  .intro .lead { max-width: 560px; }
+  .intro .lead + .lead { margin-top: 14px; }
+  .reel { position: relative; border-radius: 16px; overflow: hidden; aspect-ratio: 16 / 9; border: 1px solid var(--aline); background: #000; box-shadow: 0 30px 70px rgba(0, 0, 0, .55); cursor: pointer; }
+  #kc .reel { box-shadow: 0 30px 70px rgba(0, 0, 0, .55), 0 0 60px rgba(42, 143, 134, .18); }
+  #utk .reel { box-shadow: 0 30px 70px rgba(0, 0, 0, .55), 0 0 70px rgba(123, 75, 214, .3); }
+  .reel img, .reel video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1s cubic-bezier(.2, .8, .2, 1), opacity .6s; }
+  .reel video { opacity: 0; }
+  .reel:hover video.ready { opacity: 1; } .reel:hover img { transform: scale(1.05); }
+  .reel .cap { position: absolute; left: 14px; bottom: 12px; z-index: 2; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; background: rgba(8, 12, 14, .7); padding: 6px 10px; border-radius: 6px; }
+  .reel .play { z-index: 2; border-color: var(--a); } .reel .play svg { fill: var(--a); }
+  .reel:hover .play { background: var(--a); } .reel:hover .play svg { fill: #120b05; }
+
+  .sub { display: flex; align-items: center; gap: 14px; margin: 84px 0 26px; font-family: var(--f-line); font-size: 24px; letter-spacing: .14em; text-transform: uppercase; }
+  .sub::after { content: ""; flex: 1; height: 1px; background: linear-gradient(to right, var(--aline), transparent); }
+  .sub small { font-family: var(--f-body); font-size: 12px; letter-spacing: .1em; color: var(--dim); font-weight: 600; }
+
+  /* feature grid */
+  .feats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .feat { position: relative; padding: 26px 24px 24px; border-radius: var(--r); background: linear-gradient(160deg, rgba(23, 35, 41, .9), rgba(16, 24, 28, .9)); border: 1px solid var(--line); overflow: hidden;
+          transition: transform .35s cubic-bezier(.2, .8, .2, 1), border-color .3s, box-shadow .3s; }
+  #utk .feat { background: linear-gradient(160deg, rgba(30, 22, 48, .92), rgba(16, 12, 26, .92)); }
+  .feat::before { content: ""; position: absolute; left: 0; top: 0; width: 100%; height: 3px; background: linear-gradient(to right, var(--a), transparent); transform: scaleX(.25); transform-origin: left; transition: transform .5s; }
+  .feat:hover { transform: translateY(-6px); border-color: var(--aline); box-shadow: 0 18px 40px rgba(0, 0, 0, .4); }
+  .feat:hover::before { transform: scaleX(1); }
+  .feat .ic { width: 42px; height: 42px; border-radius: 10px; display: grid; place-items: center; background: var(--adim); border: 1px solid var(--aline); margin-bottom: 16px; }
+  .feat .ic svg { width: 22px; height: 22px; fill: none; stroke: var(--a); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .feat h3 { font-family: var(--f-line); font-weight: 400; font-size: 21px; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 8px; }
+  #utk .feat h3 { font-family: var(--f-utk); font-size: 24px; letter-spacing: .03em; }
+  .feat p { color: var(--muted); font-size: 14.5px; line-height: 1.65; }
+  .feat b.big { display: block; font-family: var(--f-display); font-weight: 400; font-size: 34px; color: var(--a); margin-bottom: 4px; }
+
+  /* gallery */
+  .gal { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
+  .gal button { position: relative; display: block; overflow: hidden; border-radius: 12px; border: 1px solid var(--line); background: #000; grid-column: span 2; aspect-ratio: 16 / 9; transition: border-color .3s, transform .35s, box-shadow .3s; }
+  .gal button.wide { grid-column: span 3; }
+  .gal button.tall { aspect-ratio: auto; }
+  .gal img { width: 100%; height: 100%; object-fit: cover; transition: transform .9s cubic-bezier(.2, .8, .2, 1), filter .4s; }
+  .gal button:hover { border-color: var(--a); transform: translateY(-4px); box-shadow: 0 16px 36px rgba(0, 0, 0, .45); }
+  .gal button:hover img { transform: scale(1.07); }
+  .gal button::after { content: "+"; position: absolute; right: 12px; top: 12px; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: rgba(8, 12, 14, .7); border: 1px solid var(--a);
+                        color: var(--a); font-size: 20px; line-height: 1; opacity: 0; transform: scale(.7); transition: opacity .3s, transform .3s; }
+  .gal button:hover::after { opacity: 1; transform: none; }
+
+  /* trailers */
+  .trailers { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .trailers .card .vid-body { padding: 16px 18px 18px; }
+  .trailers .card:hover { border-color: var(--aline); }
+  .trailers h3 { font-size: 16px; font-weight: 600; } .trailers small { display: block; margin-top: 5px; color: var(--dim); font-size: 12px; }
+  .trailers .card .play { border-color: var(--a); } .trailers .card .play svg { fill: var(--a); }
+  .trailers .card:hover .play { background: var(--a); } .trailers .card:hover .play svg { fill: #120b05; }
+
+  /* store row */
+  .getrow { margin-top: 84px; padding: 34px; border-radius: 18px; border: 1px solid var(--aline); background: linear-gradient(120deg, var(--adim), rgba(16, 24, 28, .6)); }
+  #utk .getrow { background: linear-gradient(120deg, var(--adim), rgba(14, 10, 24, .7)); }
+  .getrow h3 { font-family: var(--f-display); font-weight: 400; font-size: 32px; margin-bottom: 6px; }
+  #utk .getrow h3 { font-family: var(--f-utk); font-size: 38px; }
+  .getrow > p { color: var(--muted); font-size: 15px; margin-bottom: 24px; }
+  .badges { display: flex; gap: 14px; flex-wrap: wrap; align-items: stretch; }
+  .badge { position: relative; display: flex; align-items: center; gap: 12px; min-width: 210px; padding: 12px 18px 12px 14px; border-radius: 11px; background: #05080a; border: 1.5px solid rgba(244, 236, 217, .55); text-align: left; transition: transform .25s, border-color .25s, box-shadow .25s; }
+  .badge svg { width: 30px; height: 30px; flex: none; }
+  .badge span { display: block; line-height: 1.15; }
+  .badge small { display: block; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); font-weight: 600; margin-bottom: 3px; }
+  .badge b { font-size: 18px; font-weight: 700; letter-spacing: .01em; }
+  .badge.live { border-color: #fa5c5c; }
+  .badge.live:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(250, 92, 92, .35); }
+  .badge.soon { cursor: default; border-color: rgba(244, 236, 217, .16); filter: grayscale(1); }
+  .badge.soon svg, .badge.soon b { opacity: .45; }
+  .badge.soon em { position: absolute; right: -6px; top: -9px; font-style: normal; font-size: 9.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #1a1206; background: var(--a); padding: 3px 8px; border-radius: 99px; filter: none; }
+  .badge.disc { background: var(--disc); border-color: transparent; filter: none; }
+  .badge.disc small { color: rgba(255, 255, 255, .75); } .badge.disc svg { fill: #fff; }
+  .badge.disc:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(88, 101, 242, .5); }
+
+  /* image viewer */
+  .viewer { position: fixed; z-index: 130; inset: 0; background: rgba(3, 5, 6, .94); display: none; place-items: center; padding: 56px 70px; }
+  .viewer.open { display: grid; animation: vin .3s; }
+  @keyframes vin { from { opacity: 0; } }
+  .viewer img { max-width: 100%; max-height: 100%; border-radius: 8px; box-shadow: 0 30px 90px rgba(0, 0, 0, .7); animation: zin .4s cubic-bezier(.2, .8, .2, 1); }
+  @keyframes zin { from { opacity: 0; transform: scale(.96); } }
+  .viewer .x { position: absolute; top: 14px; right: 22px; font-size: 38px; }
+  .viewer .nv { position: absolute; top: 50%; translate: 0 -50%; width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--line-2); font-size: 22px; background: rgba(8, 12, 14, .6); transition: background .2s, color .2s; }
+  .viewer .nv:hover { background: var(--gold); color: #1a1206; }
+  .viewer .pv { left: 14px; } .viewer .nx { right: 14px; }
+  .viewer .ct { position: absolute; bottom: 16px; left: 0; right: 0; text-align: center; font-size: 12px; letter-spacing: .18em; color: var(--dim); }
+
+  @media (max-width: 1000px) {
+    .split { grid-template-columns: 1fr; } .half { min-height: 56vh; padding-top: 120px; } .split .divider, .split .eyebrow-top { display: none; }
+    .half.k .in { margin-left: 0; }
+    .intro { grid-template-columns: 1fr; gap: 36px; }
+    .feats { grid-template-columns: 1fr 1fr; }
+    .gal { grid-template-columns: repeat(2, 1fr); } .gal button, .gal button.wide { grid-column: span 1; }
+    .trailers { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .feats { grid-template-columns: 1fr; }
+    .gal { grid-template-columns: 1fr; } .gal button, .gal button.wide { grid-column: auto; }
+    .game-sec { padding: 84px 0; } .getrow { padding: 24px 18px; margin-top: 60px; }
+    .badge { min-width: 0; width: 100%; } .viewer { padding: 56px 12px; }
+    .half .logo { height: 110px; } .intro .logo-kc { height: 130px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .game-sec .pbg { transform: none !important; } }
+</style>
+</head>
+<body data-page="games">
+
+<section class="split" id="top">
+  <div class="half k" data-clip="media/kc_battle.mp4">
+    <img class="bgimg" src="media/kc.jpg" alt=""><video muted loop playsinline preload="metadata" src="media/kc_battle.mp4"></video>
+    <div class="in">
+      <img class="logo" src="media/kc_logo.png" alt="Keeps &amp; Conquerors">
+      <div class="tags"><span class="tag">Fantasy RTS</span><span class="tag">Multiplayer</span><span class="tag">In development</span></div>
+      <a class="btn btn-gold" href="#kc">Explore the game</a>
+    </div>
+  </div>
+  <div class="half u" data-clip="media/utk_story_clip.mp4">
+    <img class="bgimg" src="media/utk_story_124.jpg" alt=""><video muted loop playsinline preload="metadata" src="media/utk_story_clip.mp4"></video>
+    <div class="in">
+      <div class="ut">Under the<br>Kingdom</div>
+      <div class="tags"><span class="tag" style="color:var(--vio-l);background:rgba(123,75,214,.14);border-color:rgba(169,132,255,.35)">Roguelike</span><span class="tag" style="color:var(--vio-l);background:rgba(123,75,214,.14);border-color:rgba(169,132,255,.35)">Horde survival</span><span class="tag" style="color:var(--vio-l);background:rgba(123,75,214,.14);border-color:rgba(169,132,255,.35)">In development</span></div>
+      <a class="btn btn-line" href="#utk" style="border-color:var(--vio-l)">Explore the game</a>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="eyebrow-top wrap"><div class="eyebrow">Our games</div></div>
+</section>
+
+<!-- ================= KEEPS & CONQUERORS ================= -->
+<section class="game-sec" id="kc">
+  <div class="pbg" data-px style="background-image:url(media/games/kc_bg.jpg)"></div>
+  <div class="wrap">
+    <div class="intro">
+      <div class="rv">
+        <img class="logo-kc" src="media/kc_logo.png" alt="Keeps &amp; Conquerors">
+        <div class="eyebrow">Fantasy real-time strategy</div>
+        <div class="tags"><span class="tag">Strategy</span><span class="tag">Multiplayer</span><span class="tag">Base building</span><span class="tag">Siege</span><span class="tag">Low-poly</span><span class="tag">In development</span></div>
+        <p class="lead">Keeps &amp; Conquerors is a real-time strategy game about castles and the Kings inside them. Choose a people, crown a hero as your King, and build a keep that can hold. Then march out and break the enemy's walls before they break yours.</p>
+        <p class="lead"><b style="color:var(--gold)">When a King falls, the kingdom falls.</b></p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px"><a class="btn btn-gold" href="#" data-yt="ZyV6upBPsC8"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Watch the story trailer</a><a class="btn btn-line" href="#kc-get">Get the game</a></div>
+      </div>
+      <div class="reel rv" data-yt="C5WQlKd7hyU"><img src="media/kc.jpg" alt=""><video muted loop playsinline preload="metadata" src="media/kc_siege.mp4"></video><span class="cap">Siege</span><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
+    </div>
+
+    <div class="sub rv">What you do <small>Keeps &amp; Conquerors</small></div>
+    <div class="feats" id="kcFeats"></div>
+
+    <div class="sub rv">Screenshots <small>Click to enlarge</small></div>
+    <div class="gal" id="kcGal"></div>
+
+    <div class="sub rv">Trailers</div>
+    <div class="trailers" id="kcTr"></div>
+
+    <div class="getrow rv" id="kc-get">
+      <h3>Get Keeps &amp; Conquerors</h3>
+      <p>In development. The page on itch.io is live, and you can follow the game there to hear when it launches.</p>
+      <div class="badges" id="kcBadges"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= UNDER THE KINGDOM ================= -->
+<section class="game-sec" id="utk">
+  <div class="pbg" data-px style="background-image:url(media/utk_story_124.jpg)"></div>
+  <div class="wrap">
+    <div class="intro">
+      <div class="rv">
+        <div class="title-utk">Under the<br>Kingdom</div>
+        <div class="eyebrow">Roguelike horde survival</div>
+        <div class="tags"><span class="tag">Roguelike</span><span class="tag">Horde survival</span><span class="tag">Build crafting</span><span class="tag">In development</span></div>
+        <p class="lead">A violet rot called the Hollowing is rising through the cellars of the city. Pick your path down into the pit, outlast the hordes, and grow your build at every level-up.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px"><a class="btn btn-gold" href="#" data-yt="FAjyqbiJ_Tc" style="background:var(--vio);color:#fff;box-shadow:0 6px 26px rgba(123,75,214,.45)"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Watch the story trailer</a><a class="btn btn-line" href="#utk-get" style="border-color:var(--vio-l)">Get the game</a></div>
+      </div>
+      <div class="reel rv" data-yt="X23FPsjCwL8"><img src="media/utk.jpg" alt=""><video muted loop playsinline preload="metadata" src="media/utk_highlights.mp4"></video><span class="cap">Gameplay</span><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
+    </div>
+
+    <div class="sub rv">How it plays <small>Under the Kingdom</small></div>
+    <div class="feats" id="utkFeats"></div>
+
+    <div class="sub rv">Art &amp; gameplay <small>Click to enlarge</small></div>
+    <div class="gal" id="utkGal"></div>
+
+    <div class="sub rv">Trailers</div>
+    <div class="trailers" id="utkTr"></div>
+
+    <div class="getrow rv" id="utk-get">
+      <h3>Get Under the Kingdom</h3>
+      <p>In development. The page on itch.io is live, and you can follow the game there to hear when it launches.</p>
+      <div class="badges" id="utkBadges"></div>
+    </div>
+  </div>
+</section>
+
+<div class="viewer" id="viewer"><button class="x" aria-label="Close">&times;</button><button class="nv pv" aria-label="Previous">&#8592;</button><img alt=""><button class="nv nx" aria-label="Next">&#8594;</button><div class="ct"></div></div>
+
+<script src="chrome.js"></script>
+<script>
+  const I = p => `<svg viewBox="0 0 24 24">${p}</svg>`;
+  const ICON = {
+    people: I('<circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6"/><circle cx="17" cy="9" r="2.4"/><path d="M17 14c2.5 0 4 1.8 4 4.5"/>'),
+    cards: I('<rect x="4" y="5" width="11" height="15" rx="2"/><path d="M9 3h9a2 2 0 0 1 2 2v12"/><path d="M8 11h3M8 14.5h3"/>'),
+    stairs: I('<path d="M3 20h5v-5h5v-5h5V5h3"/>'),
+    wall: I('<path d="M3 20V9h3V6h3v3h3V6h3v3h3v11z"/><path d="M3 14.5h18M9 9v5.5M15 9v5.5M12 14.5V20"/>'),
+    ram: I('<path d="M4 10h12l4 3-4 3H4z"/><path d="M6 16v3M14 16v3"/>'),
+    crown: I('<path d="M3 18 4.5 7l4.5 4 3-6 3 6 4.5-4L21 18z"/><path d="M3 21h18"/>'),
+    relic: I('<path d="M12 3l7 4v6c0 4-3 6.5-7 8-4-1.5-7-4-7-8V7z"/><path d="M12 8v6M9 11h6"/>'),
+    map: I('<path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/>'),
+    gear: I('<circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/>'),
+    sword: I('<path d="M14 4h6v6L10 20l-2-2z"/><path d="M5 19l-2 2M7 17l-3 3"/>'),
+    skull: I('<path d="M12 3a7 7 0 0 0-7 7c0 2.4 1.2 4 3 5v3h8v-3c1.8-1 3-2.6 3-5a7 7 0 0 0-7-7z"/><circle cx="9.5" cy="10.5" r="1.3"/><circle cx="14.5" cy="10.5" r="1.3"/>'),
+    flame: I('<path d="M12 3c1 4 5 5.5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 .3 1.4 1 2 1.8 2.2C10.5 8 11 5.5 12 3z"/>'),
+    rune: I('<path d="M12 3v18M7 7l5 4 5-4M7 15l5-4 5 4"/>'),
+    step: I('<path d="M12 3v14"/><path d="M6 12l6 6 6-6"/>'),
+    tithe: I('<path d="M4 20 12 4l8 16z"/><path d="M12 10v5"/>'),
+    key: I('<circle cx="8" cy="12" r="4"/><path d="M12 12h9M18 12v3M21 12v2"/>')
+  };
+  const KC = [
+    ['people', 'Nine peoples, 36 heroes', 'Humans, Undead, Orcs, Elves, Dwarves, Demons, Celestials, Beastfolk and Fae each bring their own army, signature units and walls: stone, bone, living wood, bronze, basalt, marble, logs and thorn. Every people has four heroes to crown as King, and every King bends one part of the war.', '36'],
+    ['cards', 'Draft your boons', 'As your kingdom grows, pick boons from a draft. 240 boons in four rarities, from Common to Legendary, shape a different army every match.', '240'],
+    ['stairs', 'Rise through four Reigns', 'Gather food, wood, stone, gold and mana. Raise a Keystone to open each new Reign.'],
+    ['wall', 'Paint your castle', 'Draw your walls on the grid, two layers thick for a walkway on top. Put gates, towers and stairs where you want them.'],
+    ['ram', 'Break the gates', 'Bring rams and siege engines to the walls. Expect burning pitch and boiling oil on the way in.'],
+    ['crown', 'Two ways to win', 'Crownfall: strike down every enemy King. Keystones: destroy the enemy Keep and every Keystone they finished. A fallen King does not save them.'],
+    ['relic', 'Hunt the relics', 'Twenty relics lie across the land. Send bearers to carry them home for power.'],
+    ['map', 'Play your way', 'War Table matches with up to 12 kingdoms, against the AI or with friends online, or hold out in Siege Waves, a survival mode. 93 map layouts across six biomes, under fog of war. Online multiplayer is in, and crossplay is in the works. Mouse and keyboard or a controller.'],
+    ['gear', 'Built for big armies', 'Stylized low-poly art with flat shading. Units are vertex-animated and drawn as instanced meshes, built to put big armies on screen. Upscaling with DLSS, FSR, XeSS or Unreal’s TSR.']
+  ];
+  const UTK = [
+    ['map', 'Pick your path down', 'Each descent is a route you choose. Fight, rest at a fire, or take a risk. Every run goes down a different way.'],
+    ['skull', 'Outlast the hordes', 'Hordes of rot-twisted creatures pour out of the pit. Your hero walks, and your weapons do the fighting.'],
+    ['cards', 'Grow your build at every level-up', 'Each level-up offers weapons, tomes and rites. Your health and level carry through the whole run, so every choice stays with you.'],
+    ['flame', 'Evolutions and unions', 'Max a weapon with its matching tome and it evolves. Fuse two maxed weapons into something new.'],
+    ['rune', 'Inscribe your runes', 'Runes specialise a single weapon, so two copies of the same weapon can play very differently from run to run.'],
+    ['relic', 'Relics and trinkets', 'Pick unique relics between fights and stack trinkets you find in the middle of the fight.'],
+    ['sword', 'Heroes that play differently', 'Each hero starts with a signature weapon of their own. Unlock more heroes and more weapons through play.'],
+    ['tithe', 'Climb the Tithe', 'Fifteen difficulty levels in three tiers. Each hero climbs the Tithe on their own, with rewards at every tier.'],
+    ['skull', 'Bosses to read and beat', 'More than one boss and elite waits in the deeps, so each run asks for its own plan. Hollowing, the violet rot, changes what you can find.']
+  ];
+  const KCG = [
+    ['media/games/screenshot_01_hud_siege_breach.jpg', 'Siege breach', 'wide'], ['media/games/screenshot_02_battle_meet_close.jpg', 'Armies meet', 'wide'],
+    ['media/games/screenshot_03_hud_army_at_the_walls.jpg', 'Army at the walls'], ['media/games/screenshot_04_keep_town_grown.jpg', 'A keep grown into a town'], ['media/games/screenshot_05_sig_demons.jpg', 'Signature units: Demons'],
+    ['media/kc.jpg', 'The siege', 'wide']
+  ];
+  const UTKG = [
+    ['media/utk.jpg', 'A horde fight', 'wide'], ['media/utk_title.jpg', 'The title screen', 'wide'],
+    ['media/utk_story_12.jpg', 'The kingdom above the pit'], ['media/utk_story_124.jpg', 'The kingdom at night'], ['media/utk_story_104.jpg', 'Glory below'],
+    ['media/utk_story_36.jpg', 'Children at the pit'], ['media/utk_story_68.jpg', 'The rot in the market'], ['media/utk_story_4.jpg', 'The holy book']
+  ];
+  const TR = {
+    kc: [['ZyV6upBPsC8', 'Story trailer', 'Watch on YouTube'], ['C5WQlKd7hyU', 'Teaser', 'Watch on YouTube']],
+    utk: [['FAjyqbiJ_Tc', 'Story trailer', 'Watch on YouTube'], ['X23FPsjCwL8', 'Teaser', 'Watch on YouTube']]
+  };
+  const PLAY = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+  const feats = (list) => list.map(f => `<div class="feat rv"><div class="ic">${ICON[f[0]]}</div>${f[3] ? `<b class="big">${f[3]}</b>` : ''}<h3>${f[1]}</h3><p>${f[2]}</p></div>`).join('');
+  document.getElementById('kcFeats').innerHTML = feats(KC);
+  document.getElementById('utkFeats').innerHTML = feats(UTK);
+  const gal = (list, id) => document.getElementById(id).innerHTML = list.map((g, i) => `<button class="rv ${g[2] || ''}" data-g="${id}" data-i="${i}" aria-label="Enlarge: ${g[1]}"><img src="${g[0]}" alt="${g[1]}" loading="lazy"></button>`).join('');
+  gal(KCG, 'kcGal'); gal(UTKG, 'utkGal');
+  const trs = (list, id) => document.getElementById(id).innerHTML = list.map(t => `<a class="card rv" href="https://youtu.be/${t[0]}" data-yt="${t[0]}"><div class="media"><img src="https://i.ytimg.com/vi/${t[0]}/hqdefault.jpg" alt="" loading="lazy"><span class="play">${PLAY}</span></div><div class="vid-body"><h3>${t[1]}</h3><small>${t[2]}</small></div></a>`).join('');
+  trs(TR.kc, 'kcTr'); trs(TR.utk, 'utkTr');
+
+  // store badges
+  const ICO = {
+    itch: '<svg viewBox="0 0 24 24"><path fill="#fa5c5c" d="M3 3h18l2 5c0 1.700-1.300 3-3 3s-3-1.300-3-3c0 1.700-1.300 3-3 3s-3-1.300-3-3c0 1.700-1.300 3-3 3S4 9.700 4 8c0 1.700-1.300 3-3 3S-1 9.700-1 8z"/><path fill="#fa5c5c" d="M4 12.500c.5.200 1 .3 1.500.3 1 0 1.900-.4 2.500-1 .7.600 1.600 1 2.700 1h2.600c1.100 0 2-.4 2.700-1 .6.600 1.500 1 2.500 1 .5 0 1-.1 1.500-.3V19c0 1.500-.6 2-2 2H6c-1.400 0-2-.5-2-2z"/></svg>',
+    epic: '<svg viewBox="0 0 24 24"><path fill="#fff" d="M3 2h18v14.500l-2.500 2L12 22l-6.500-3.500L3 16.500zm3.500 3.500V15l2.500 1.500h6l2.500-1.500v-1.500h-3V15h-4V5.500zM9 8v1.500h6V8z"/></svg>',
+    steam: '<svg viewBox="0 0 24 24"><circle cx="15" cy="9" r="4.500" fill="none" stroke="#fff" stroke-width="2"/><circle cx="15" cy="9" r="1.700" fill="#fff"/><circle cx="7.500" cy="16.500" r="3.200" fill="none" stroke="#fff" stroke-width="2"/><path d="M11 13.500l-2.300-1.700" stroke="#fff" stroke-width="2.200" fill="none"/></svg>',
+    _: ''
+  };
+  const DISC = DZ.SOC.find(s => s.key === 'discord');
+  const soon = (ic, n) => `<div class="badge soon" aria-disabled="true" title="Coming soon">${ICO[ic]}<span><small>Coming soon on</small><b>${n}</b></span><em>Coming soon</em></div>`;
+  document.getElementById('kcBadges').innerHTML =
+    `<a class="badge live" href="https://domzaddy.itch.io/keeps-and-conquerors" target="_blank" rel="noopener">${ICO.itch}<span><small>Follow it on</small><b>itch.io</b></span></a>` +
+    soon('epic', 'Epic Games Store') + soon('steam', 'Steam') +
+    `<a class="badge disc" href="${DISC.url}" target="_blank" rel="noopener">${DZ.icon(DISC)}<span><small>Join the</small><b>Discord</b></span></a>`;
+  document.getElementById('utkBadges').innerHTML =
+    `<a class="badge live" href="https://domzaddy.itch.io/under-the-kingdom" target="_blank" rel="noopener">${ICO.itch}<span><small>Follow it on</small><b>itch.io</b></span></a>` +
+    soon('epic', 'Epic Games Store') + soon('steam', 'Steam') +
+    `<a class="badge disc" href="${DISC.url}" target="_blank" rel="noopener">${DZ.icon(DISC)}<span><small>Join the</small><b>Discord</b></span></a>`;
+  document.querySelectorAll('#utkBadges .badge.soon em, #utkBadges .badge.soon').forEach(() => {});
+  document.getElementById('utk').querySelectorAll('.badge.soon em').forEach(e => e.style.background = 'var(--vio-l)');
+
+  // hover-play clips (split hero, trailer reels)
+  const hook = (host, ev1, ev2) => { const v = host.querySelector('video'); if (!v) return;
+    v.addEventListener('playing', () => v.classList.add('ready'));
+    host.addEventListener('mouseenter', () => { host.classList.add('hot'); v.play().catch(() => {}); });
+    host.addEventListener('mouseleave', () => { host.classList.remove('hot'); v.pause(); }); };
+  document.querySelectorAll('.half, .reel').forEach(h => hook(h));
+  // touch devices: play the hero clips when visible
+  if (matchMedia('(hover: none)').matches) { const io2 = new IntersectionObserver(es => es.forEach(e => { const v = e.target.querySelector('video'); if (e.isIntersecting) { e.target.classList.add('hot'); v.play().catch(() => {}); } else { e.target.classList.remove('hot'); v.pause(); } }), { threshold: .5 });
+    document.querySelectorAll('.half').forEach(h => io2.observe(h)); }
+
+  // parallax backgrounds
+  const px = [...document.querySelectorAll('[data-px]')];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let tick = false;
+  const par = () => { tick = false; px.forEach(el => { const r = el.parentElement.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return;
+    const p = (r.top + r.height / 2 - innerHeight / 2) / innerHeight; el.style.transform = `translate3d(0, ${(-p * 90).toFixed(1)}px, 0)`; }); };
+  if (!reduce) { addEventListener('scroll', () => { if (!tick) { tick = true; requestAnimationFrame(par); } }, { passive: true }); par(); }
+
+  // image viewer
+  const V = document.getElementById('viewer'), vi = V.querySelector('img'), ct = V.querySelector('.ct');
+  const LISTS = { kcGal: KCG, utkGal: UTKG };
+  let vl = null, vk = 0;
+  const vshow = k => { vk = (k + vl.length) % vl.length; vi.style.animation = 'none'; vi.offsetWidth; vi.style.animation = ''; vi.src = vl[vk][0]; vi.alt = vl[vk][1]; ct.textContent = `${vl[vk][1].toUpperCase()}  ·  ${vk + 1} / ${vl.length}`; };
+  const vclose = () => V.classList.remove('open');
+  document.addEventListener('click', e => { const b = e.target.closest('[data-g]'); if (!b) return; vl = LISTS[b.dataset.g]; vshow(+b.dataset.i); V.classList.add('open'); });
+  V.addEventListener('click', e => { if (e.target === V || e.target.closest('.x')) vclose(); else if (e.target.closest('.pv')) vshow(vk - 1); else if (e.target.closest('.nx')) vshow(vk + 1); });
+  addEventListener('keydown', e => { if (!V.classList.contains('open')) return; if (e.key === 'Escape') vclose(); if (e.key === 'ArrowLeft') vshow(vk - 1); if (e.key === 'ArrowRight') vshow(vk + 1); });
+  let sx = 0; V.addEventListener('touchstart', e => sx = e.touches[0].clientX, { passive: true });
+  V.addEventListener('touchend', e => { const d = e.changedTouches[0].clientX - sx; if (Math.abs(d) > 50) vshow(vk + (d < 0 ? 1 : -1)); });
+
+  DZ.watch();
+</script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Studio · DomZaddy Games</title>
+<meta name="description" content="Meet DomZaddy Games, the indie game studio of DomZaddy, a game developer for 15+ years. Business, press and playtest questions welcome.">
+<link rel="icon" href="media/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="media/favicon-32.png">
+<link rel="apple-touch-icon" href="media/apple-touch-icon.png">
+<meta name="theme-color" content="#0b1114">
+<link rel="canonical" href="https://domzaddy.com/studio.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DomZaddy Games">
+<meta property="og:title" content="Studio · DomZaddy Games">
+<meta property="og:description" content="Meet DomZaddy Games, the indie game studio of DomZaddy, a game developer for 15+ years. Business, press and playtest questions welcome.">
+<meta property="og:url" content="https://domzaddy.com/studio.html">
+<meta property="og:image" content="https://domzaddy.com/media/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@dom_zaddy">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Anton&family=Inter:wght@400;500;600;700&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css"><style>
+  .sh-hero .bg img { filter: blur(3px) saturate(.9); transform: scale(1.06); }
+  .sh-hero .wrap { display: grid; grid-template-columns: 1.2fr .8fr; gap: 50px; align-items: center; }
+  .sh-hero .crest { width: min(400px, 80%); justify-self: center; transform-origin: 50% 2%; animation: sway 6s ease-in-out infinite; filter: drop-shadow(0 26px 34px rgba(0, 0, 0, .6)); }
+  @keyframes sway { 0%, 100% { rotate: -2deg; } 50% { rotate: 2deg; } }
+
+  .who { display: grid; grid-template-columns: 1fr 1.1fr; gap: 60px; align-items: center; }
+  .who .lead + .lead { margin-top: 16px; }
+  .who .stats { display: flex; gap: 40px; margin: 28px 0 0; flex-wrap: wrap; }
+  .who .stats b { display: block; font-family: var(--f-display); font-size: 40px; color: var(--gold); font-weight: 400; }
+  .who .stats span { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); }
+  .intro { display: block; border-radius: 16px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 24px 60px rgba(0, 0, 0, .45); }
+  .intro:hover { border-color: var(--line-2); }
+  .intro .media img { transform: none; }
+  .intro:hover .media img { transform: scale(1.04); }
+  .intro:hover .play { transform: scale(1.1); background: var(--gold); }
+  .intro:hover .play svg { fill: #1a1206; }
+  .intro small { display: block; padding: 14px 18px; font-size: 13px; color: var(--muted); background: var(--card); }
+
+  .now { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .now a { display: grid; grid-template-columns: 44% 1fr; min-height: 220px; }
+  .now .media { aspect-ratio: auto; height: 100%; }
+  .now .body { padding: 24px; display: flex; flex-direction: column; gap: 10px; justify-content: center; }
+  .now .body img { height: 70px; width: auto; align-self: flex-start; }
+  .now .t-utk { font-family: var(--f-utk); font-size: 34px; line-height: 1; }
+  .now p { color: var(--muted); font-size: 14px; line-height: 1.6; }
+
+  .tl { position: relative; margin-top: 10px; padding-left: 34px; }
+  .tl::before { content: ""; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(to bottom, var(--gold), var(--line)); }
+  .tl-item { position: relative; padding: 0 0 30px; }
+  .tl-item::before { content: ""; position: absolute; left: -34px; top: 5px; width: 16px; height: 16px; border-radius: 50%; background: var(--ink-2); border: 3px solid var(--gold); }
+  .tl-item.now-dot::before { background: var(--gold); box-shadow: 0 0 0 6px rgba(255, 194, 61, .18); }
+  .tl-item h3 { font-family: var(--f-display); font-weight: 400; font-size: 24px; margin: 8px 0 6px; }
+  .tl-item p { color: var(--muted); font-size: 15px; line-height: 1.65; max-width: 640px; }
+  .tl-item .code { display: inline-block; margin-top: 8px; font-family: var(--f-line); letter-spacing: .1em; color: var(--gold); }
+  .back { display: grid; grid-template-columns: .9fr 1.1fr; gap: 60px; }
+  .back .side p { margin-bottom: 22px; }
+
+  .tools { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+  .tools span { padding: 9px 16px; border-radius: 99px; background: var(--card); border: 1px solid var(--line); font-size: 13px; font-weight: 600; letter-spacing: .06em; transition: border-color .2s, color .2s; }
+  .tools span:hover { border-color: var(--gold); color: var(--gold); }
+  .tools-sec { padding: 56px 0; }
+
+  .contact { display: grid; grid-template-columns: 1.2fr .8fr; gap: 50px; align-items: start; }
+  .form { display: grid; gap: 16px; background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 32px; }
+  .form .two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form label { display: grid; gap: 7px; font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--dim); }
+  .form input, .form select, .form textarea { width: 100%; background: var(--ink); border: 1px solid var(--line); border-radius: 9px; padding: 13px 14px; color: var(--parch); font: inherit; font-size: 15px; letter-spacing: 0; text-transform: none; outline: none; }
+  .form textarea { min-height: 150px; resize: vertical; }
+  .form input:focus, .form select:focus, .form textarea:focus { border-color: var(--gold); }
+  .form button { justify-self: start; }
+  .note { display: none; padding: 14px 16px; border-radius: 10px; background: rgba(255, 194, 61, .1); border: 1px solid rgba(255, 194, 61, .3); color: var(--gold); font-size: 14px; line-height: 1.5; }
+  .note.on { display: block; }
+  .side-soc { display: grid; gap: 12px; }
+  .side-soc .btn-disc { justify-content: center; padding: 18px 24px; }
+  .side-soc h3 { font-family: var(--f-line); font-weight: 400; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); font-size: 16px; margin: 14px 0 2px; }
+  .side-soc .soc-tile { flex-direction: row; align-items: center; padding: 14px 18px; gap: 14px; }
+  .side-soc .soc-tile svg { width: 24px; height: 24px; flex: none; }
+  .side-soc .soc-tile i { margin: 0 0 0 auto; }
+
+  @media (max-width: 1000px) {
+    .sh-hero .wrap, .who, .back, .contact, .now { grid-template-columns: 1fr; }
+    .sh-hero .crest { order: -1; width: 220px; justify-self: start; }
+    .now a { grid-template-columns: 1fr; }
+    .now .media { aspect-ratio: 16 / 9; height: auto; }
+  }
+  @media (max-width: 640px) { .form { padding: 22px; } .form .two { grid-template-columns: 1fr; } .side-soc .soc-tile i { display: none; } }
+</style></head>
+<body data-page="studio">
+
+<section class="page-hero sh-hero"><div class="bg"><img src="media/kc.jpg" alt=""></div>
+  <div class="wrap">
+    <div><div class="eyebrow">DomZaddy Games</div><h1>The Studio</h1><p class="lead">An indie game studio.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:26px"><a class="btn btn-gold" href="#contact">Get in touch</a><a class="btn btn-line" href="games.html">Our games</a></div></div>
+    <img class="crest" src="media/crest.png" alt="DomZaddy Games crest">
+  </div>
+</section>
+
+<section class="section" id="who">
+  <div class="wrap who">
+    <div class="rv">
+      <div class="eyebrow">Who we are</div>
+      <h2 class="h2">One developer, a lot of games</h2>
+      <p class="lead">DomZaddy Games is the studio of DomZaddy, a game developer for more than 15 years. The studio makes its own games and shares the whole journey on the channel.</p>
+      <p class="lead">Every trailer, dev story and late-night fix goes on camera, so you can watch each game take shape.</p>
+      <div class="stats"><div><b>15+</b><span>Years making games</span></div><div><b>2</b><span>Games in development</span></div></div>
+    </div>
+    <a class="intro rv" href="https://www.youtube.com/watch?v=3sroaWvg0Iw" data-yt="3sroaWvg0Iw">
+      <div class="media"><img src="https://i.ytimg.com/vi/3sroaWvg0Iw/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/3sroaWvg0Iw/hqdefault.jpg'" alt=""><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
+      <small>Watch: I've Been Making Games for 15+ Years, and One Is About Toilets</small>
+    </a>
+  </div>
+</section>
+
+<section class="section alt" id="now">
+  <div class="wrap">
+    <div class="head-row rv"><div><div class="eyebrow">Now making</div><h2 class="h2">Two games in development</h2></div><a class="btn btn-line" href="games.html">All about the games</a></div>
+    <div class="now">
+      <a class="card rv" href="games.html#kc"><div class="media"><img src="media/kc.jpg" alt=""></div>
+        <div class="body"><img src="media/kc_logo.png" alt="Keeps & Conquerors"><div><span class="tag">Fantasy RTS</span></div><p>Build your keep, raise an army and break the enemy's walls.</p><span class="link-arrow">See the game →</span></div></a>
+      <a class="card rv" href="games.html#utk"><div class="media"><img src="media/utk_story_124.jpg" alt=""></div>
+        <div class="body"><div class="t-utk">Under the Kingdom</div><div><span class="tag">Roguelike</span></div><p>Go down into the pit, outlast the hordes and grow your build.</p><span class="link-arrow">See the game →</span></div></a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="story">
+  <div class="wrap back">
+    <div class="side rv">
+      <div class="eyebrow">Where we came from</div>
+      <h2 class="h2">The back story</h2>
+      <p class="lead">Before the studio's own games, DomZaddy ran Cryptic Glitch, a Fortnite Creative studio that built branded experiences for big partners.</p>
+      <a class="btn btn-line" href="https://crypticglitch.com" target="_blank" rel="noopener">Visit crypticglitch.com</a>
+    </div>
+    <div class="tl rv">
+      <div class="tl-item"><span class="tag">Cryptic Glitch</span><h3>A Fortnite Creative studio</h3><p>Brand-powered game experiences, from concept to code to launch, built in UEFN with Verse.</p></div>
+      <div class="tl-item"><span class="tag">Wizards of the Coast</span><h3>D&amp;D Deathrun</h3><p>A sponsored collaboration with roguelike elements and a full custom game UI.</p></div>
+      <div class="tl-item"><span class="tag">TMNT licensed</span><h3>Turtles Tag Tournament</h3><p>A 2D tag-team fighting game built entirely in Fortnite Creative.</p></div>
+      <div class="tl-item"><span class="tag">Hi-Chew Creator Incubator winner</span><h3>Hi-Chew Waterworks</h3><p>A branded fun run with speedrun elements that won the Hi-Chew Creator Incubator.</p></div>
+      <div class="tl-item"><span class="tag">Co-creator</span><h3>The Pillars</h3><p>One of the longest-running projects, still developed and growing.</p></div>
+      <div class="tl-item now-dot"><span class="tag">2026</span><h3>FortBusters</h3><p>A tower defense island, live on Fortnite since 2026-11-06.</p><span class="code">Island code 9432-9731-6290</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt tools-sec" id="tools">
+  <div class="wrap rv">
+    <div class="eyebrow">Tools we use</div>
+    <div class="tools"><span>Unreal Engine</span><span>UEFN / Verse</span><span>Three.js</span><span>Godot</span><span>C++</span></div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="head-row rv"><div><div class="eyebrow">Contact</div><h2 class="h2">Say hello</h2><p class="lead">Business, press or playtest questions are welcome.</p></div></div>
+    <div class="contact">
+      <form class="form rv" id="cform" action="https://formspree.io/f/xvzvpboq" method="POST">
+        <div class="two"><label>Name<input name="name" required autocomplete="name"></label><label>Email<input type="email" name="email" required autocomplete="email"></label></div>
+        <label>Subject<select name="subject"><option>Business</option><option>Press</option><option>Playtest</option><option>Other</option></select></label>
+        <label>Message<textarea name="message" required></textarea></label>
+        <input type="hidden" name="_subject" value="DomZaddy.com contact"><div class="note" id="cnote">Thanks! Your message is on its way.</div>
+        <button class="btn btn-gold" type="submit">Send message</button>
+      </form>
+      <div class="side-soc rv" id="sideSoc"></div>
+    </div>
+  </div>
+</section>
+
+<script src="chrome.js"></script>
+<script>
+  document.getElementById('cform').addEventListener('submit', e => { e.preventDefault(); const f = e.target; DZ.sendForm(f, () => { f.reset(); document.getElementById('cnote').classList.add('on'); f.querySelector('button').disabled = false; }); });
+  const disc = DZ.SOC.find(s => s.key === 'discord');
+  document.getElementById('sideSoc').innerHTML =
+    `<a class="btn btn-disc" href="${disc.url}" target="_blank" rel="noopener">${DZ.icon(disc)}Join the Discord</a><h3>Follow</h3>` +
+    DZ.SOC.filter(s => s.key !== 'discord').map(s => `<a class="soc-tile" style="--c:${s.color}" href="${s.url}" target="_blank" rel="noopener">${DZ.icon(s)}<div><b>${s.name}</b><br><span>${s.handle}</span></div><i>${s.cta} →</i></a>`).join('');
+  DZ.watch();
+</script>
+</body></html>

@@ -1,799 +1,240 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DomZaddy — Game Developer & Verse Programmer</title>
-    <meta name="description" content="DomZaddy — Game Developer, Verse Programmer, and Owner of Cryptic Glitch. 15+ years building immersive gaming experiences in UEFN, Unreal Engine, and Godot. Now making Keeps &amp; Conquerors and Under the Kingdom at DomZaddy Games.">
-    <link rel="icon" type="image/jpeg" href="images/logo.jpg">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DomZaddy Games</title>
+<meta name="description" content="DomZaddy Games is an indie game studio making Keeps &amp; Conquerors, a fantasy RTS, and Under the Kingdom, a roguelike horde survival game.">
+<link rel="icon" href="media/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="media/favicon-32.png">
+<link rel="apple-touch-icon" href="media/apple-touch-icon.png">
+<meta name="theme-color" content="#0b1114">
+<link rel="canonical" href="https://domzaddy.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DomZaddy Games">
+<meta property="og:title" content="DomZaddy Games">
+<meta property="og:description" content="DomZaddy Games is an indie game studio making Keeps &amp; Conquerors, a fantasy RTS, and Under the Kingdom, a roguelike horde survival game.">
+<meta property="og:url" content="https://domzaddy.com/">
+<meta property="og:image" content="https://domzaddy.com/media/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@dom_zaddy">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Anton&family=Inter:wght@400;500;600;700&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+  /* cinema hero */
+  .hero { position: relative; height: 100vh; min-height: 680px; overflow: hidden; background: #000; }
+  .hero .bg { position: absolute; inset: 0; opacity: 0; transition: opacity 1.3s ease; }
+  .hero .bg.on { opacity: 1; }
+  .hero .bg img, .hero .bg video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .hero .bg video { transform: scale(1.03); transition: transform 9s linear; }
+  .hero .bg.on video { transform: scale(1.11); }
+  .hero .shade { position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(100deg, rgba(6, 10, 12, .93) 14%, rgba(6, 10, 12, .38) 50%, rgba(6, 10, 12, .05)), linear-gradient(to top, rgba(11, 17, 20, 1) 2%, rgba(6, 10, 12, 0) 40%); }
+  .pane { position: absolute; z-index: 3; left: max(40px, calc((100vw - var(--wrap)) / 2)); bottom: 120px; width: min(580px, 84vw); pointer-events: none; }
+  .pane > * { opacity: 0; transform: translateY(26px); transition: opacity .7s, transform .9s cubic-bezier(.2, .8, .2, 1); }
+  .pane.on { pointer-events: auto; }
+  .pane.on > * { opacity: 1; transform: none; }
+  .pane.on > *:nth-child(2) { transition-delay: .1s; } .pane.on > *:nth-child(3) { transition-delay: .2s; } .pane.on > *:nth-child(4) { transition-delay: .3s; }
+  .logo-kc { height: 210px; filter: drop-shadow(0 8px 20px rgba(0, 0, 0, .7)); }
+  .title-utk { font-family: var(--f-utk); font-size: clamp(54px, 6.4vw, 92px); line-height: .95; text-shadow: 0 4px 24px rgba(0, 0, 0, .9); }
+  .pane .tag-line { margin: 16px 0 10px; font-size: 12px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
+  .pane p { font-size: 17px; line-height: 1.65; color: var(--muted); margin-bottom: 26px; }
+  .row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .thumbs { position: absolute; z-index: 4; right: max(40px, calc((100vw - var(--wrap)) / 2)); bottom: 70px; display: flex; gap: 16px; }
+  .thumb { width: 230px; border-radius: 10px; overflow: hidden; background: #000; cursor: pointer; border: 2px solid rgba(244, 236, 217, .2); transition: border-color .3s, transform .3s; text-align: left; }
+  .thumb:hover { transform: translateY(-4px); }
+  .thumb.on { border-color: var(--gold); }
+  .thumb img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; opacity: .9; }
+  .thumb span { display: block; padding: 8px 12px; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+  .bar { height: 3px; background: rgba(255, 255, 255, .15); }
+  .bar i { display: block; height: 100%; width: 0; background: var(--gold); }
+  .thumb.on .bar i { animation: fill 8s linear forwards; }
+  @keyframes fill { to { width: 100%; } }
+  .sound { position: absolute; z-index: 4; left: max(40px, calc((100vw - var(--wrap)) / 2)); bottom: 52px; font-size: 11px; letter-spacing: .25em; text-transform: uppercase; color: var(--dim); }
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  /* latest videos */
+  .vid-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr; grid-template-rows: auto auto; gap: 18px; }
+  .vid-grid .card:first-child { grid-row: span 2; }
+  .vid-grid .card:first-child .media { aspect-ratio: auto; height: 100%; min-height: 360px; }
+  .vid-grid .card { display: flex; flex-direction: column; }
+  .vid-body { padding: 16px 18px 18px; }
+  .vid-body h3 { font-size: 15px; font-weight: 600; line-height: 1.4; }
+  .vid-body small { display: block; margin-top: 6px; color: var(--dim); font-size: 12px; }
+  .vid-grid .card:first-child { position: relative; }
+  .vid-grid .card:first-child .vid-body { position: absolute; left: 0; right: 0; bottom: 0; padding: 26px; background: linear-gradient(to top, rgba(6, 10, 12, .95), transparent); }
+  .vid-grid .card:first-child h3 { font-size: 22px; }
+  .shorts { display: grid; grid-auto-flow: column; grid-auto-columns: 200px; gap: 14px; overflow-x: auto; padding: 4px 2px 14px; margin-top: 30px; scrollbar-width: thin; }
+  .short { position: relative; border-radius: 12px; overflow: hidden; aspect-ratio: 9 / 16; background: #000; border: 1px solid var(--line); transition: transform .3s, border-color .3s; }
+  .short:hover { transform: translateY(-5px); border-color: var(--line-2); }
+  .short img { width: 100%; height: 100%; object-fit: cover; }
+  .short span { position: absolute; left: 0; right: 0; bottom: 0; padding: 30px 12px 12px; font-size: 13px; font-weight: 600; line-height: 1.35; background: linear-gradient(to top, rgba(0, 0, 0, .9), transparent); }
+  .sub-h { display: flex; align-items: center; gap: 12px; margin-top: 46px; font-family: var(--f-line); letter-spacing: .14em; text-transform: uppercase; font-size: 17px; }
+  .sub-h svg { width: 20px; height: 20px; fill: var(--yt); }
 
-    <link rel="stylesheet" href="styles.css">
+  /* games */
+  .games { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .game { position: relative; display: block; border-radius: 18px; overflow: hidden; min-height: 520px; border: 1px solid var(--line); }
+  .game img, .game video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.2, .8, .2, 1), opacity .6s; }
+  .game video { opacity: 0; }
+  .game:hover video.ready { opacity: 1; }
+  .game:hover img { transform: scale(1.06); }
+  .game::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(6, 10, 12, .96) 8%, rgba(6, 10, 12, .2) 60%); }
+  .game .in { position: absolute; z-index: 2; left: 32px; right: 32px; bottom: 30px; }
+  .game .in img.lg { position: static; height: 130px; width: auto; transform: none; margin-bottom: 8px; }
+  .game .in .t-utk { font-family: var(--f-utk); font-size: 52px; line-height: 1; margin-bottom: 10px; }
+  .game .in p { color: var(--muted); font-size: 15px; line-height: 1.6; margin: 10px 0 18px; max-width: 460px; }
+
+  /* studio strip */
+  .studio { display: grid; grid-template-columns: .8fr 1.2fr; gap: 70px; align-items: center; }
+  .studio .crest { width: min(380px, 80%); justify-self: center; transform-origin: 50% 2%; animation: sway 6s ease-in-out infinite; filter: drop-shadow(0 26px 34px rgba(0, 0, 0, .55)); }
+  @keyframes sway { 0%, 100% { rotate: -2deg; } 50% { rotate: 2deg; } }
+  .stats { display: flex; gap: 40px; margin: 30px 0 34px; flex-wrap: wrap; }
+  .stats b { display: block; font-family: var(--f-display); font-size: 42px; color: var(--gold); font-weight: 400; }
+  .stats span { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); }
+
+  /* one-stop */
+  .more { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .more .card { display: flex; flex-direction: column; }
+  .more .media { aspect-ratio: 4 / 3; }
+  .more .body { padding: 24px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .more h3 { font-family: var(--f-display); font-weight: 400; font-size: 26px; }
+  .more p { color: var(--muted); font-size: 15px; line-height: 1.6; flex: 1; }
+  .more .body .tag { align-self: flex-start; }
+  .book-media { background: radial-gradient(ellipse at 50% 40%, #2c2a33, #0d0c10); }
+  .book-media img { position: absolute; top: 7%; bottom: 7%; left: 0; right: 0; margin: auto; width: auto !important; height: 86% !important; object-fit: contain !important;
+                    box-shadow: 0 20px 40px rgba(0, 0, 0, .6); border-radius: 4px; transform: rotate(-3deg); }
+  .card:hover .book-media img { transform: rotate(0deg) scale(1.04) !important; }
+
+  @media (max-width: 1000px) {
+    .vid-grid { grid-template-columns: 1fr 1fr; } .vid-grid .card:first-child { grid-column: span 2; grid-row: auto; }
+    .games, .studio, .more { grid-template-columns: 1fr; }
+    .thumbs { left: 20px; right: 20px; bottom: 20px; } .thumb { flex: 1; width: auto; }
+    .pane { bottom: 170px; left: 20px; } .sound { display: none; }
+    .logo-kc { height: 140px; }
+  }
+</style>
 </head>
-<body>
+<body data-page="home">
 
-    <!-- Navigation -->
-    <nav class="nav" id="nav">
-        <div class="nav-inner">
-            <a href="#hero" class="nav-logo">
-                <img src="images/logo.jpg" alt="DomZaddy" class="nav-logo-img">
-                <span class="nav-logo-text">Dom<span class="accent">Zaddy</span></span>
-            </a>
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
-                <span></span><span></span><span></span>
-            </button>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#games">Games</a></li>
-                <li><a href="#reel">Reel</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#expertise">Expertise</a></li>
-                <li><a href="#work">Work</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+<section class="hero" id="hero">
+  <div class="bg on"><img src="media/kc.jpg" alt=""><video muted loop playsinline autoplay preload="auto" src="media/kc_battle.mp4"></video></div>
+  <div class="bg"><img src="media/utk_story_12.jpg" alt=""><video muted loop playsinline preload="auto" src="media/utk_story_clip.mp4"></video></div>
+  <div class="shade"></div>
 
-    <!-- Hero -->
-    <section class="hero" id="hero">
-        <div class="hero-grid-bg"></div>
-        <div class="hero-gradient"></div>
-        <div class="hero-scanlines"></div>
-        <div class="hero-content">
-            <div class="hero-badges">
-                <div class="hero-badge hero-badge-primary hero-anim" data-delay="0">
-                    Looking for Full-Time Position
-                </div>
-                <div class="hero-badge hero-anim" data-delay="100">
-                    <span class="status-dot"></span>
-                    Available for Projects
-                </div>
-            </div>
-            <h1 class="hero-title hero-anim" data-delay="200">
-                <span class="hero-greeting">Hello, I'm</span>
-                <span class="hero-name">Dom<span class="glitch-hover" data-text="Zaddy">Zaddy</span></span>
-            </h1>
-            <p class="hero-subtitle hero-anim" data-delay="400">Game Developer <span class="accent">&</span> Verse Programmer</p>
-            <p class="hero-desc hero-anim" data-delay="600">Owner of Cryptic Glitch. 15+ years crafting immersive gaming experiences. Specializing in Verse, UEFN, Unreal Engine, and Godot.</p>
-            <div class="hero-cta hero-anim" data-delay="800">
-                <a href="#work" class="btn btn-primary magnetic">View My Work</a>
-                <a href="#contact" class="btn btn-ghost magnetic">Get In Touch</a>
-            </div>
-            <div class="hero-stats hero-anim" data-delay="1000">
-                <div class="hero-stat">
-                    <span class="hero-stat-num counter" data-target="15" data-suffix="+">0</span>
-                    <span class="hero-stat-label">Years Dev</span>
-                </div>
-                <div class="hero-stat-divider"></div>
-                <div class="hero-stat">
-                    <span class="hero-stat-num counter" data-target="10" data-suffix="+">0</span>
-                    <span class="hero-stat-label">Published Games</span>
-                </div>
-                <div class="hero-stat-divider"></div>
-                <div class="hero-stat">
-                    <span class="hero-stat-num counter" data-target="3" data-suffix="">0</span>
-                    <span class="hero-stat-label">Brand Collabs</span>
-                </div>
-            </div>
-        </div>
-        <div class="hero-visual">
-            <div class="hero-logo-frame">
-                <img src="images/logo.jpg" alt="DomZaddy" class="hero-logo-img">
-                <div class="frame-corner frame-tl"></div>
-                <div class="frame-corner frame-tr"></div>
-                <div class="frame-corner frame-bl"></div>
-                <div class="frame-corner frame-br"></div>
-            </div>
-        </div>
-    </section>
+  <div class="pane on">
+    <img class="logo-kc" src="media/kc_logo.png" alt="Keeps & Conquerors">
+    <div class="tag-line">Fantasy RTS · Multiplayer · In development</div>
+    <p>Build your keep tile by tile, raise an army of one of nine peoples, and break the enemy's walls to kill their King.</p>
+    <div class="row"><a class="btn btn-gold" href="#" data-yt="ZyV6upBPsC8"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Watch trailer</a><a class="btn btn-line" href="games.html#kc">Explore the game</a></div>
+  </div>
+  <div class="pane">
+    <div class="title-utk">Under the<br>Kingdom</div>
+    <div class="tag-line">Roguelike · Horde survival · In development</div>
+    <p>A violet rot called the Hollowing is rising through the cellars of the city. Pick your path down into the pit, outlast the hordes, and grow your build at every level-up.</p>
+    <div class="row"><a class="btn btn-gold" href="#" data-yt="FAjyqbiJ_Tc"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Watch story trailer</a><a class="btn btn-line" href="games.html#utk">Explore the game</a></div>
+  </div>
 
-    <!-- Games -->
-    <section class="section" id="games">
-        <div class="container">
-            <div class="section-label">// games</div>
-            <h2 class="section-title">DomZaddy Games</h2>
-            <p class="section-subtitle">My indie game studio. Two games are in development now.</p>
+  <div class="thumbs">
+    <button class="thumb on"><img src="media/kc.jpg" alt=""><span>Keeps &amp; Conquerors</span><div class="bar"><i></i></div></button>
+    <button class="thumb"><img src="media/utk_story_12.jpg" alt=""><span>Under the Kingdom</span><div class="bar"><i></i></div></button>
+  </div>
+  <div class="sound">Scroll</div>
+</section>
 
-            <div class="games-grid">
-                <article class="game-card">
-                    <a href="https://youtu.be/ZyV6upBPsC8" target="_blank" rel="noopener" class="game-media" aria-label="Watch the Keeps &amp; Conquerors story trailer on YouTube">
-                        <img src="images/games/kc.jpg" alt="Keeps &amp; Conquerors: an army and a siege wagon at the walls of a stone keep" width="1280" height="720" loading="lazy">
-                        <span class="game-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
-                    </a>
-                    <div class="game-body">
-                        <div class="game-tags">
-                            <span class="highlight-badge">Fantasy RTS</span>
-                            <span class="highlight-badge">Multiplayer</span>
-                            <span class="highlight-badge">In development</span>
-                        </div>
-                        <h3>Keeps &amp; Conquerors</h3>
-                        <p>Build your keep tile by tile, raise an army of one of nine peoples, and break the enemy's walls to kill their King. Crown one of 36 heroes, draft from 240 boons, and play matches of up to 12 kingdoms against the AI or friends online.</p>
-                        <div class="game-links">
-                            <a href="https://youtu.be/ZyV6upBPsC8" target="_blank" rel="noopener" class="btn btn-sm btn-primary">Watch the Trailer</a>
-                            <a href="https://youtu.be/C5WQlKd7hyU" target="_blank" rel="noopener" class="btn btn-sm btn-ghost">Teaser</a>
-                        </div>
-                    </div>
-                </article>
+<section class="section" id="latest">
+  <div class="wrap">
+    <div class="head-row rv">
+      <div><div class="eyebrow">From the channel</div><h2 class="h2">Latest videos</h2></div>
+      <a class="btn btn-line" href="videos.html">All videos</a>
+    </div>
+    <div class="vid-grid rv" id="vidGrid"></div>
+    <div class="sub-h rv"><svg viewBox="0 0 24 24"><path d="M10 15.5v-7l6 3.5-6 3.5zM17.8 9.6l-1.9-.8 1.5-.8a3.6 3.6 0 0 0-3.4-6.4L6.4 5.6a3.6 3.6 0 0 0 .2 6.6l1.9.8-1.5.8a3.6 3.6 0 0 0 3.4 6.4l7.6-4a3.6 3.6 0 0 0-.2-6.6z"/></svg>Shorts</div>
+    <div class="shorts rv" id="shorts"></div>
+  </div>
+</section>
 
-                <article class="game-card">
-                    <a href="https://youtu.be/FAjyqbiJ_Tc" target="_blank" rel="noopener" class="game-media" aria-label="Watch the Under the Kingdom story trailer on YouTube">
-                        <img src="images/games/utk.jpg" alt="Under the Kingdom: a hero fights a horde of rot-touched people in a stone cellar full of gold" width="1280" height="720" loading="lazy">
-                        <span class="game-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
-                    </a>
-                    <div class="game-body">
-                        <div class="game-tags">
-                            <span class="highlight-badge">Roguelike</span>
-                            <span class="highlight-badge">Horde Survival</span>
-                            <span class="highlight-badge">In development</span>
-                        </div>
-                        <h3>Under the Kingdom</h3>
-                        <p>A violet rot called the Hollowing is rising through the cellars of the city. Pick your path down into the pit, outlast the hordes, and grow your build at every level-up.</p>
-                        <div class="game-links">
-                            <a href="https://youtu.be/FAjyqbiJ_Tc" target="_blank" rel="noopener" class="btn btn-sm btn-primary">Watch the Trailer</a>
-                        </div>
-                    </div>
-                </article>
-            </div>
+<section class="section alt" id="games">
+  <div class="wrap">
+    <div class="head-row rv"><div><div class="eyebrow">In development</div><h2 class="h2">Our games</h2></div><a class="btn btn-line" href="games.html">All about the games</a></div>
+    <div class="games">
+      <a class="game rv" href="games.html#kc"><img src="media/kc.jpg" alt=""><video muted loop playsinline preload="metadata" src="media/kc_siege.mp4"></video>
+        <div class="in"><img class="lg" src="media/kc_logo.png" alt="Keeps & Conquerors"><span class="tag">Fantasy RTS</span> <span class="tag">Multiplayer</span>
+          <p>Nine peoples, 36 heroes and 240 boons. Paint your castle, break the gates and kill the King.</p><span class="link-arrow">See the game →</span></div></a>
+      <a class="game rv" href="games.html#utk"><img src="media/utk_story_124.jpg" alt=""><video muted loop playsinline preload="metadata" src="media/utk_highlights.mp4"></video>
+        <div class="in"><div class="t-utk">Under the Kingdom</div><span class="tag">Roguelike</span> <span class="tag">Horde survival</span>
+          <p>Go down into the pit under the city. Outlast the hordes, take the rot's power, and grow your build at every level-up.</p><span class="link-arrow">See the game →</span></div></a>
+    </div>
+  </div>
+</section>
 
-            <div class="follow-card">
-                <div class="follow-text">
-                    <h3>Follow the games</h3>
-                    <p>Get news, playtests and launch dates first.</p>
-                </div>
-                <div class="follow-actions">
-                    <a href="https://discord.gg/dBuX7yRUTY" target="_blank" rel="noopener" class="btn btn-primary">
-                        <svg viewBox="0 0 24 24" class="btn-icon" aria-hidden="true"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.74 19.74 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
-                        Join the Discord
-                    </a>
-                    <form class="signup-form" action="https://formspree.io/f/xvzvpboq" method="POST">
-                        <input type="hidden" name="_subject" value="Game news sign-up">
-                        <input type="hidden" name="signup" value="game news">
-                        <label for="signupEmail" class="sr-only">Email address</label>
-                        <input type="email" id="signupEmail" name="email" required placeholder="you@example.com" autocomplete="email">
-                        <button type="submit" class="btn btn-ghost">Email Me News</button>
-                        <p class="signup-status" role="status" aria-live="polite"></p>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
+<section class="section" id="follow">
+  <div class="wrap">
+    <div class="head-row rv"><div><div class="eyebrow">Follow the journey</div><h2 class="h2">Watch the games get made</h2><p class="lead">Dev stories, trailers and behind-the-scenes clips, everywhere you scroll.</p></div></div>
+    <div class="soc-grid rv" id="socGrid"></div>
+  </div>
+</section>
 
-    <!-- Reel -->
-    <section class="section reel-section" id="reel">
-        <div class="container">
-            <div class="section-label">// showreel</div>
-            <h2 class="section-title">In Motion</h2>
-            <p class="section-subtitle">A full look at what I&rsquo;ve shipped &mdash; gameplay systems, custom UI, and branded experiences across 2023&ndash;2026.</p>
+<section class="section alt" id="studio">
+  <div class="wrap studio">
+    <img class="crest rv" src="media/crest.png" alt="DomZaddy Games crest">
+    <div class="rv">
+      <div class="eyebrow">The studio</div>
+      <h2 class="h2">An indie studio with one big crest</h2>
+      <p class="lead">DomZaddy Games is the indie studio of DomZaddy, a game developer for more than 15 years. We build our own games, from fantasy strategy to roguelikes, and share the whole journey on the channel.</p>
+      <div class="stats"><div><b>15+</b><span>Years making games</span></div><div><b>2</b><span>Games in development</span></div><div><b>10+</b><span>Games shipped</span></div></div>
+      <div class="row"><a class="btn btn-gold" href="studio.html">Meet the studio</a><a class="btn btn-line" href="studio.html#contact">Get in touch</a></div>
+    </div>
+  </div>
+</section>
 
-            <div class="reel-window">
-                <div class="code-titlebar">
-                    <div class="code-dots">
-                        <span class="dot dot-red"></span>
-                        <span class="dot dot-yellow"></span>
-                        <span class="dot dot-green"></span>
-                    </div>
-                    <span class="code-filename">showcase.mp4 &mdash; 5:33 &middot; 1080p</span>
-                    <span class="reel-status" id="reelStatus" data-state="idle">
-                        <span class="reel-status-dot"></span>
-                        <span class="reel-status-label">Ready</span>
-                    </span>
-                </div>
+<section class="section" id="more">
+  <div class="wrap">
+    <div class="head-row rv"><div><div class="eyebrow">More from DomZaddy</div><h2 class="h2">Everything in one place</h2></div></div>
+    <div class="more">
+      <a class="card rv" href="books.html"><div class="media book-media"><img src="media/book_cover.jpg" alt="She Sat Alone cover"></div>
+        <div class="body"><span class="tag">Books</span><h3>She Sat Alone</h3><p>DomZaddy writes as Colten Rose. A fantasy novel twenty years in the making, about love, loss and everything in between.</p><span class="link-arrow">See the book →</span></div></a>
+      <a class="card rv" href="videos.html"><div class="media"><img src="https://i.ytimg.com/vi/3sroaWvg0Iw/hqdefault.jpg" alt=""><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
+        <div class="body"><span class="tag">Dev stories</span><h3>15+ years of games</h3><p>How a game developer ended up making toilets, tomatoes and a fantasy RTS.</p><span class="link-arrow">Watch the videos →</span></div></a>
+    </div>
+  </div>
+</section>
 
-                <div class="reel-stage">
-                    <video
-                        id="reelVideo"
-                        class="reel-video"
-                        muted
-                        playsinline
-                        preload="auto"
-                        poster="videos/showcase-poster.jpg"
-                        disablepictureinpicture
-                        disableremoteplayback
-                        controlslist="nodownload nofullscreen noremoteplayback nopictureinpicture"
-                        x-webkit-airplay="deny"
-                    >
-                        <source src="videos/showcase.mp4" type="video/mp4">
-                    </video>
+<script src="chrome.js"></script>
+<script>
+  // hero: two slides, crossfade every 8 s
+  const bgs = [...document.querySelectorAll('.hero .bg')], panes = [...document.querySelectorAll('.pane')], thumbs = [...document.querySelectorAll('.thumb')];
+  let cur = 0, timer;
+  function show(i) {
+    cur = i;
+    [bgs, panes, thumbs].forEach(list => list.forEach((el, k) => el.classList.toggle('on', k === i)));
+    bgs.forEach((b, k) => { const v = b.querySelector('video'); if (k === i) { v.currentTime = 0; v.play().catch(() => {}); } else { setTimeout(() => v.pause(), 1300); } });
+    const bar = thumbs[i].querySelector('.bar i'); bar.style.animation = 'none'; bar.offsetWidth; bar.style.animation = '';
+    clearTimeout(timer); timer = setTimeout(() => show((cur + 1) % bgs.length), 8000);
+  }
+  thumbs.forEach((t, k) => t.addEventListener('click', () => show(k)));
+  show(0);
 
-                    <button class="reel-overlay" id="reelOverlay" aria-label="Play reel">
-                        <span class="reel-play-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                            </svg>
-                        </span>
-                    </button>
+  // game cards play a clip on hover
+  document.querySelectorAll('.game').forEach(g => { const v = g.querySelector('video'); v.addEventListener('playing', () => v.classList.add('ready'));
+    g.addEventListener('mouseenter', () => v.play().catch(() => {})); g.addEventListener('mouseleave', () => v.pause()); });
 
-                </div>
-            </div>
-        </div>
-    </section>
+  // latest videos from media/videos.json (the real site refreshes this file every day)
+  fetch('media/videos.json').then(r => r.json()).then(list => {
+    const longs = list.filter(v => !v.short).slice(0, 5), shorts = list.filter(v => v.short).slice(0, 10);
+    const ago = d => { const n = Math.round((Date.now() - new Date(d)) / 864e5); return n <= 0 ? 'Today' : n === 1 ? '1 day ago' : n < 60 ? n + ' days ago' : d; };
+    document.getElementById('vidGrid').innerHTML = longs.map((v, i) => `<a class="card" href="${v.url}" data-yt="${v.id}">
+        <div class="media"><img src="https://i.ytimg.com/vi/${v.id}/${i ? 'hq' : 'maxres'}default.jpg" alt="" loading="lazy"><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
+        <div class="vid-body"><h3>${v.title}</h3><small>${ago(v.published)}</small></div></a>`).join('');
+    document.getElementById('shorts').innerHTML = shorts.map(v => `<a class="short" href="${v.url}" data-yt="${v.id}" data-short>
+        <img src="https://i.ytimg.com/vi/${v.id}/oar2.jpg" onerror="this.src='https://i.ytimg.com/vi/${v.id}/hqdefault.jpg'" alt="" loading="lazy"><span>${v.title.replace(/#\w+/g, '').trim()}</span></a>`).join('');
+  });
 
-    <!-- About -->
-    <section class="section" id="about">
-        <div class="container">
-            <div class="section-label">// about</div>
-            <h2 class="section-title">The Developer</h2>
-            <div class="about-layout">
-                <div class="about-text">
-                    <p class="about-lead">I build worlds people want to live in.</p>
-                    <p>With over 15 years in game development, I've gone from solo projects to leading Cryptic Glitch — a Fortnite Creative studio that's partnered with Wizards of the Coast, TMNT, and Hi-Chew. I specialize in Verse programming within UEFN, creating innovative game systems that push the boundaries of what's possible in Fortnite Creative.</p>
-                    <p>My work spans from custom verse-powered UIs and roguelike systems to full branded experiences that feel like standalone titles. Co-Creator of The Pillars — one of my longest-running and most ambitious projects.</p>
-                    <div class="about-detail-grid">
-                        <div class="about-detail">
-                            <span class="detail-label">Location</span>
-                            <span class="detail-value">United States</span>
-                        </div>
-                        <div class="about-detail">
-                            <span class="detail-label">Studio</span>
-                            <span class="detail-value">Cryptic Glitch</span>
-                        </div>
-                        <div class="about-detail">
-                            <span class="detail-label">Experience</span>
-                            <span class="detail-value">15+ Years</span>
-                        </div>
-                        <div class="about-detail">
-                            <span class="detail-label">Focus</span>
-                            <span class="detail-value">Verse / UEFN</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Expertise -->
-    <section class="section section-alt" id="expertise">
-        <div class="container">
-            <div class="section-label">// expertise</div>
-            <h2 class="section-title">Technical Stack</h2>
-            <p class="section-subtitle">The tools and technologies I work with daily</p>
-
-            <div class="expertise-grid">
-                <div class="expertise-card expertise-featured">
-                    <div class="expertise-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-                    </div>
-                    <h3>Verse Programming</h3>
-                    <p>Expert-level Verse development within UEFN. Custom game mechanics, UI systems, roguelike elements, progression systems, and innovative verse-powered experiences.</p>
-                    <div class="expertise-tags">
-                        <span>Verse</span>
-                        <span>UEFN</span>
-                        <span>Game Logic</span>
-                        <span>UI Systems</span>
-                    </div>
-                </div>
-
-                <div class="expertise-card">
-                    <div class="expertise-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-                    </div>
-                    <h3>Unreal Engine</h3>
-                    <p>Full Unreal Engine development — Blueprints, C++, level design, and optimization for high-performance experiences.</p>
-                    <div class="expertise-tags">
-                        <span>UE5</span>
-                        <span>Blueprints</span>
-                        <span>C++</span>
-                    </div>
-                </div>
-
-                <div class="expertise-card">
-                    <div class="expertise-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
-                    </div>
-                    <h3>Godot Engine</h3>
-                    <p>GDScript and engine-level development for indie projects and rapid prototyping of game concepts.</p>
-                    <div class="expertise-tags">
-                        <span>GDScript</span>
-                        <span>2D/3D</span>
-                        <span>Prototyping</span>
-                    </div>
-                </div>
-
-                <div class="expertise-card">
-                    <div class="expertise-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
-                    </div>
-                    <h3>Game Design</h3>
-                    <p>Full-cycle game design — from concept and mechanics to level design, balancing, player experience, and branded content integration.</p>
-                    <div class="expertise-tags">
-                        <span>Level Design</span>
-                        <span>Systems</span>
-                        <span>Brand Collabs</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Verse Code Showcase -->
-            <div class="code-showcase">
-                <div class="code-window">
-                    <div class="code-titlebar">
-                        <div class="code-dots">
-                            <span class="dot dot-red"></span>
-                            <span class="dot dot-yellow"></span>
-                            <span class="dot dot-green"></span>
-                        </div>
-                        <span class="code-filename">game_manager.verse</span>
-                    </div>
-                    <pre class="code-block"><code id="verseCode"></code></pre>
-                    <pre id="verseSource" style="display:none">using { /Fortnite.com/Characters }
-using { /Fortnite.com/Devices }
-using { /Fortnite.com/FortPlayerUtilities }
-using { /Fortnite.com/Game }
-using { /Fortnite.com/Input }
-using { /Fortnite.com/UI }
-using { /UnrealEngine.com/Temporary/Diagnostics }
-using { /UnrealEngine.com/Temporary/SpatialMath }
-using { /UnrealEngine.com/Temporary/UI }
-using { /Verse.org/Colors/NamedColors }
-using { /Verse.org/Random }
-using { /Verse.org/Simulation }
-
-&lt;#Code Written By:
-·▄▄▄▄        • ▌ ▄ ·. ·▄▄▄▄• ▄▄▄· ·▄▄▄▄  ·▄▄▄▄   ▄· ▄▌
-██▪ ██ ▪     ·██ ▐███▪▪▀·.█▌▐█ ▀█ ██▪ ██ ██▪ ██ ▐█▪██▌
-▐█· ▐█▌ ▄█▀▄ ▐█ ▌▐▌▐█·▄█▀▀▀•▄█▀▀█ ▐█· ▐█▌▐█· ▐█▌▐█▌▐█▪
-██. ██ ▐█▌.▐▌██ ██▌▐█▌█▌▪▄█▀▐█ ▪▐▌██. ██ ██. ██  ▐█▀·.
-▀▀▀▀▀•  ▀█▄▀▪▀▀  █▪▀▀▀·▀▀▀ • ▀  ▀ ▀▀▀▀▀• ▀▀▀▀▀•   ▀ •
-#&gt;
-
-game_manager := class(creative_device):
-
-    @editable var RoundTimer : float = 120.0
-    @editable var MaxPlayers : int = 16
-    var IsActive : logic = false
-    var PlayerScores : [player]int = map{}
-
-    OnBegin&lt;override&gt;()&lt;suspends&gt; : void =
-        Print("Initializing game systems...")
-        InitializeRound()
-        loop:
-            Sleep(1.0)
-            if (IsActive?):
-                UpdateGameState()
-
-    InitializeRound() : void =
-        set IsActive = true
-        Print("Round started. Good luck.")</pre>
-                    <div class="code-cursor" id="codeCursor"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Work -->
-    <section class="section" id="work">
-        <div class="container">
-            <div class="section-label">// work</div>
-            <h2 class="section-title">Selected Work</h2>
-
-            <!-- Cryptic Glitch -->
-            <div class="work-block">
-                <div class="work-header">
-                    <img src="images/cg-logo.png" alt="Cryptic Glitch" class="work-logo">
-                    <div class="work-header-text">
-                        <h3>Cryptic Glitch</h3>
-                        <p>Owner & Lead Verse Programmer</p>
-                    </div>
-                    <a href="https://crypticglitch.com" target="_blank" rel="noopener" class="btn btn-sm btn-ghost">Visit Site &rarr;</a>
-                </div>
-                <p class="work-desc">Founded and lead a Fortnite Creative studio specializing in brand-powered gaming experiences. From concept to code to ship — responsible for Verse architecture, game systems, and technical direction across all projects.</p>
-
-                <div class="work-highlights">
-                    <div class="highlight-card">
-                        <div class="highlight-badge">Wizards of the Coast</div>
-                        <h4>D&D Deathrun</h4>
-                        <p>Sponsored collaboration. Innovative verse system with roguelike elements and full custom game UI. My most technically ambitious project.</p>
-                        <span class="highlight-code">5806-6430-0158</span>
-                    </div>
-                    <div class="highlight-card">
-                        <div class="highlight-badge">TMNT Licensed</div>
-                        <h4>Turtles Tag Tournament</h4>
-                        <p>2D fighting tag tournament game built entirely in Fortnite Creative. Custom combat system and character mechanics.</p>
-                        <span class="highlight-code">3060-3156-4506</span>
-                    </div>
-                    <div class="highlight-card">
-                        <div class="highlight-badge">Hi-Chew Incubator Winner</div>
-                        <h4>Hi-Chew Waterworks</h4>
-                        <p>Branded fun run with speedrun elements. Won the Hi-Chew Creator Incubator program.</p>
-                        <span class="highlight-code">2733-9791-3700</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- The Pillars -->
-            <div class="work-block">
-                <div class="work-header">
-                    <div class="work-icon-wrap">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="work-icon"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"></path></svg>
-                    </div>
-                    <div class="work-header-text">
-                        <h3>The Pillars</h3>
-                        <p>Co-Creator</p>
-                    </div>
-                </div>
-                <p class="work-desc">One of my longest-running and most ambitious projects. A flagship Fortnite Creative experience that's been continuously developed and iterated on — a testament to what's possible when you push the platform to its limits.</p>
-                <div class="work-highlights">
-                    <div class="highlight-card highlight-solo">
-                        <h4>The Pillars</h4>
-                        <p>The project that started it all. Continuous development, community-driven, and still growing.</p>
-                        <span class="highlight-code">2724-4064-5480</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact -->
-    <section class="section section-alt" id="contact">
-        <div class="container">
-            <div class="section-label">// contact</div>
-            <h2 class="section-title">Let's Build Something</h2>
-            <p class="section-subtitle">Have a project in mind? Looking for a Verse programmer? Let's talk.</p>
-
-            <div class="contact-layout">
-                <form action="https://formspree.io/f/xvzvpboq" method="POST" class="contact-form">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required placeholder="Your name">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required placeholder="you@example.com">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">Inquiry Type</label>
-                        <select id="subject" name="subject">
-                            <option value="freelance">Freelance / Contract Work</option>
-                            <option value="collab">Collaboration</option>
-                            <option value="brand">Brand Partnership</option>
-                            <option value="general">General Inquiry</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="5" required placeholder="Tell me about your project..."></textarea>
-                    </div>
-                    <input type="hidden" name="_subject" value="DomZaddy.com Contact Form">
-                    <button type="submit" class="btn btn-primary btn-submit">Send Message</button>
-                </form>
-
-                <div class="contact-sidebar">
-                    <div class="contact-card">
-                        <h4>Connect</h4>
-                        <div class="social-links">
-                            <a href="https://x.com/dom_zaddy" target="_blank" rel="noopener" class="social-link">
-                                <svg viewBox="0 0 24 24" class="social-icon"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                                <span>@dom_zaddy</span>
-                            </a>
-                            <a href="https://www.youtube.com/channel/UCWpydqCyWxwpH_ggKQOP9HA" target="_blank" rel="noopener" class="social-link">
-                                <svg viewBox="0 0 24 24" class="social-icon"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                                <span>YouTube</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="contact-card">
-                        <h4>Studio</h4>
-                        <a href="https://crypticglitch.com" target="_blank" rel="noopener" class="studio-link">
-                            <img src="images/cg-logo.png" alt="Cryptic Glitch" class="studio-link-logo">
-                            <div>
-                                <span class="studio-link-name">Cryptic Glitch</span>
-                                <span class="studio-link-url">crypticglitch.com</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container footer-inner">
-            <div class="footer-brand">
-                <img src="images/logo.jpg" alt="DomZaddy" class="footer-logo">
-                <span>Dom<span class="accent">Zaddy</span></span>
-            </div>
-            <p class="footer-copy">&copy; 2026 DomZaddy Games. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script>
-        // --- Mobile nav ---
-        const navToggle = document.getElementById('navToggle');
-        const navLinks = document.getElementById('navLinks');
-        navToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('open');
-            navToggle.classList.toggle('open');
-        });
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('open');
-                navToggle.classList.remove('open');
-            });
-        });
-
-        // --- Sticky nav ---
-        const nav = document.getElementById('nav');
-        window.addEventListener('scroll', () => {
-            nav.classList.toggle('scrolled', window.scrollY > 50);
-        });
-
-        // --- Staggered hero entrance ---
-        document.querySelectorAll('.hero-anim').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            setTimeout(() => {
-                el.style.opacity = '1';
-                el.style.transform = 'translateY(0)';
-            }, 300 + parseInt(el.dataset.delay || 0));
-        });
-
-        // --- Hero greeting typing ---
-        const greeting = document.querySelector('.hero-greeting');
-        const greetText = greeting.textContent;
-        greeting.textContent = '';
-        greeting.style.opacity = '1';
-        let gi = 0;
-        function typeGreeting() {
-            if (gi < greetText.length) {
-                greeting.textContent += greetText.charAt(gi);
-                gi++;
-                setTimeout(typeGreeting, 80);
-            }
-        }
-        setTimeout(typeGreeting, 800);
-
-        // --- Counter animation ---
-        function animateCounters() {
-            document.querySelectorAll('.counter').forEach(counter => {
-                if (counter.dataset.animated) return;
-                counter.dataset.animated = 'true';
-                const target = parseInt(counter.dataset.target);
-                const suffix = counter.dataset.suffix || '';
-                const duration = 1500;
-                const start = performance.now();
-                function tick(now) {
-                    const elapsed = now - start;
-                    const progress = Math.min(elapsed / duration, 1);
-                    const eased = 1 - Math.pow(1 - progress, 3);
-                    counter.textContent = Math.floor(eased * target) + suffix;
-                    if (progress < 1) requestAnimationFrame(tick);
-                }
-                requestAnimationFrame(tick);
-            });
-        }
-        // Trigger counters when stats become visible
-        const counterObserver = new IntersectionObserver((entries) => {
-            entries.forEach(e => { if (e.isIntersecting) animateCounters(); });
-        }, { threshold: 0.5 });
-        document.querySelectorAll('.hero-stats').forEach(el => counterObserver.observe(el));
-
-        // --- Section label typing on scroll ---
-        const labelObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !entry.target.dataset.typed) {
-                    entry.target.dataset.typed = 'true';
-                    const el = entry.target;
-                    const fullText = el.textContent;
-                    el.textContent = '';
-                    el.classList.add('typing-active');
-                    let ci = 0;
-                    function typeLabel() {
-                        if (ci < fullText.length) {
-                            el.textContent += fullText.charAt(ci);
-                            ci++;
-                            setTimeout(typeLabel, 60);
-                        } else {
-                            el.classList.remove('typing-active');
-                            el.classList.add('typing-done');
-                        }
-                    }
-                    typeLabel();
-                }
-            });
-        }, { threshold: 0.8 });
-        document.querySelectorAll('.section-label').forEach(el => labelObserver.observe(el));
-
-        // --- Game news sign-up (Formspree; falls back to a normal post if the AJAX call is refused) ---
-        const signupForm = document.querySelector('.signup-form');
-        if (signupForm) {
-            signupForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const status = signupForm.querySelector('.signup-status');
-                const button = signupForm.querySelector('button');
-                button.disabled = true;
-                status.textContent = 'Sending...';
-                try {
-                    const res = await fetch(signupForm.action, {
-                        method: 'POST',
-                        body: new FormData(signupForm),
-                        headers: { Accept: 'application/json' }
-                    });
-                    if (res.ok) {
-                        signupForm.reset();
-                        status.textContent = "You're on the list. Thanks!";
-                        button.disabled = false;
-                        return;
-                    }
-                } catch (err) { /* fall through to a normal post */ }
-                signupForm.submit();
-            });
-        }
-
-        // --- Staggered scroll reveal ---
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Find sibling cards and stagger them
-                    const parent = entry.target.parentElement;
-                    const siblings = parent.querySelectorAll('.reveal:not(.revealed)');
-                    siblings.forEach((sib, idx) => {
-                        setTimeout(() => sib.classList.add('revealed'), idx * 120);
-                    });
-                    entry.target.classList.add('revealed');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.game-card, .follow-card, .expertise-card, .work-block, .highlight-card, .contact-card, .about-detail, .hero-stat, .code-showcase, .reel-window').forEach(el => {
-            el.classList.add('reveal');
-            revealObserver.observe(el);
-        });
-
-        // --- Verse code typing ---
-        const verseCode = document.getElementById('verseSource').textContent.trim();
-
-        const codeEl = document.getElementById('verseCode');
-        const cursorEl = document.getElementById('codeCursor');
-        let codeIdx = 0;
-        let codeStarted = false;
-
-        function typeCode() {
-            if (codeIdx < verseCode.length) {
-                const chunk = verseCode.charAt(codeIdx) === '\n' ? '\n' : verseCode.charAt(codeIdx);
-                codeEl.textContent += chunk;
-                codeIdx++;
-                const speed = chunk === '\n' ? 40 : (Math.random() * 20 + 10);
-                setTimeout(typeCode, speed);
-            } else {
-                cursorEl.style.display = 'none';
-            }
-        }
-
-        const codeObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !codeStarted) {
-                    codeStarted = true;
-                    setTimeout(typeCode, 400);
-                }
-            });
-        }, { threshold: 0.3 });
-        const codeShowcase = document.querySelector('.code-showcase');
-        if (codeShowcase) codeObserver.observe(codeShowcase);
-
-        // --- Magnetic buttons ---
-        document.querySelectorAll('.magnetic').forEach(btn => {
-            btn.addEventListener('mousemove', (e) => {
-                const rect = btn.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
-                btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
-            });
-            btn.addEventListener('mouseleave', () => {
-                btn.style.transform = 'translate(0, 0)';
-                btn.style.transition = 'transform 0.4s ease';
-            });
-            btn.addEventListener('mouseenter', () => {
-                btn.style.transition = 'transform 0.1s ease';
-            });
-        });
-
-        // --- Smooth parallax on hero logo ---
-        const heroFrame = document.querySelector('.hero-logo-frame');
-        if (heroFrame && window.innerWidth > 900) {
-            window.addEventListener('mousemove', (e) => {
-                const x = (e.clientX / window.innerWidth - 0.5) * 20;
-                const y = (e.clientY / window.innerHeight - 0.5) * 20;
-                heroFrame.style.transform = `translate(${x}px, ${y}px) rotateY(${x * 0.3}deg) rotateX(${-y * 0.3}deg)`;
-            });
-        }
-
-        // --- Reel: click-to-play (keeps the bright poster visible until user
-        // engages — autoplay would replace the poster with the dark intro frame)
-        (function initReel() {
-            const video = document.getElementById('reelVideo');
-            const overlay = document.getElementById('reelOverlay');
-            const status = document.getElementById('reelStatus');
-            const statusLabel = status ? status.querySelector('.reel-status-label') : null;
-
-            if (!video || !overlay || !status) return;
-
-            // Hard-disable picture-in-picture and remote playback so browsers
-            // can't auto-pop the video into a floating window.
-            try { video.disablePictureInPicture = true; } catch (_) {}
-            try { video.disableRemotePlayback = true; } catch (_) {}
-            video.addEventListener('enterpictureinpicture', (e) => {
-                e.preventDefault();
-                if (document.pictureInPictureElement === video && document.exitPictureInPicture) {
-                    document.exitPictureInPicture().catch(() => {});
-                }
-            });
-
-            const setStatus = (state, label) => {
-                status.dataset.state = state;
-                if (statusLabel) statusLabel.textContent = label;
-            };
-
-            // Pause and reset when the section scrolls fully out of view —
-            // saves bandwidth and brings the poster back when scrolling back.
-            const reelObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (!entry.isIntersecting && !video.paused) {
-                        video.pause();
-                        video.currentTime = 0;
-                        overlay.classList.remove('hidden');
-                        setStatus('idle', 'Ready');
-                    }
-                });
-            }, { threshold: 0.05 });
-            reelObserver.observe(video);
-
-            // Click overlay → play (from start if at end, otherwise resume)
-            overlay.addEventListener('click', () => {
-                // If video has ended, restart from beginning. Otherwise resume.
-                if (video.ended || video.currentTime === 0) {
-                    // Fresh play — turn sound on
-                    video.muted = false;
-                    video.currentTime = 0;
-                }
-                const p = video.play();
-                if (p && p.catch) {
-                    p.catch(() => {
-                        // Fall back to muted if browser blocked unmuted play
-                        video.muted = true;
-                        video.play().catch(() => {});
-                    });
-                }
-                overlay.classList.add('hidden');
-                setStatus('playing', 'Playing');
-            });
-
-            // Click on the video itself → toggle pause/play
-            video.addEventListener('click', () => {
-                if (video.paused) {
-                    video.play().catch(() => {});
-                    overlay.classList.add('hidden');
-                    setStatus('playing', 'Playing');
-                } else {
-                    video.pause();
-                    overlay.classList.remove('hidden');
-                    setStatus('idle', 'Paused');
-                }
-            });
-
-            video.addEventListener('pause', () => {
-                if (video.ended) return;
-                setStatus('idle', 'Paused');
-            });
-
-            video.addEventListener('play', () => {
-                setStatus('playing', 'Playing');
-            });
-
-            video.addEventListener('ended', () => {
-                overlay.classList.remove('hidden');
-                setStatus('idle', 'Replay');
-            });
-
-            // Initial label
-            setStatus('idle', 'Ready');
-        })();
-    </script>
+  // social tiles
+  document.getElementById('socGrid').innerHTML = DZ.SOC.map(s => `<a class="soc-tile" style="--c:${s.color}" href="${s.url}" target="_blank" rel="noopener">${DZ.icon(s)}<div><b>${s.name}</b><br><span>${s.handle}</span></div><i>${s.cta} →</i></a>`).join('');
+  DZ.watch();
+</script>
 </body>
 </html>
