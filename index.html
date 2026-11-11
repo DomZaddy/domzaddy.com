@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DomZaddy — Game Developer & Verse Programmer</title>
+    <meta name="description" content="DomZaddy — Game Developer, Verse Programmer, and Owner of Cryptic Glitch. 15+ years building immersive gaming experiences in UEFN, Unreal Engine, and Godot.">
+    <link rel="icon" type="image/jpeg" href="images/logo.jpg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="#hero" class="nav-logo">
+                <img src="images/logo.jpg" alt="DomZaddy" class="nav-logo-img">
+                <span class="nav-logo-text">Dom<span class="accent">Zaddy</span></span>
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#reel">Reel</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#expertise">Expertise</a></li>
+                <li><a href="#work">Work</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <div class="hero-grid-bg"></div>
+        <div class="hero-gradient"></div>
+        <div class="hero-scanlines"></div>
+        <div class="hero-content">
+            <div class="hero-badges">
+                <div class="hero-badge hero-badge-primary hero-anim" data-delay="0">
+                    Looking for Full-Time Position
+                </div>
+                <div class="hero-badge hero-anim" data-delay="100">
+                    <span class="status-dot"></span>
+                    Available for Projects
+                </div>
+            </div>
+            <h1 class="hero-title hero-anim" data-delay="200">
+                <span class="hero-greeting">Hello, I'm</span>
+                <span class="hero-name">Dom<span class="glitch-hover" data-text="Zaddy">Zaddy</span></span>
+            </h1>
+            <p class="hero-subtitle hero-anim" data-delay="400">Game Developer <span class="accent">&</span> Verse Programmer</p>
+            <p class="hero-desc hero-anim" data-delay="600">Owner of Cryptic Glitch. 15+ years crafting immersive gaming experiences. Specializing in Verse, UEFN, Unreal Engine, and Godot.</p>
+            <div class="hero-cta hero-anim" data-delay="800">
+                <a href="#work" class="btn btn-primary magnetic">View My Work</a>
+                <a href="#contact" class="btn btn-ghost magnetic">Get In Touch</a>
+            </div>
+            <div class="hero-stats hero-anim" data-delay="1000">
+                <div class="hero-stat">
+                    <span class="hero-stat-num counter" data-target="15" data-suffix="+">0</span>
+                    <span class="hero-stat-label">Years Dev</span>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat">
+                    <span class="hero-stat-num counter" data-target="10" data-suffix="+">0</span>
+                    <span class="hero-stat-label">Published Games</span>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat">
+                    <span class="hero-stat-num counter" data-target="3" data-suffix="">0</span>
+                    <span class="hero-stat-label">Brand Collabs</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-logo-frame">
+                <img src="images/logo.jpg" alt="DomZaddy" class="hero-logo-img">
+                <div class="frame-corner frame-tl"></div>
+                <div class="frame-corner frame-tr"></div>
+                <div class="frame-corner frame-bl"></div>
+                <div class="frame-corner frame-br"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reel -->
+    <section class="section reel-section" id="reel">
+        <div class="container">
+            <div class="section-label">// showreel</div>
+            <h2 class="section-title">In Motion</h2>
+            <p class="section-subtitle">A full look at what I&rsquo;ve shipped &mdash; gameplay systems, custom UI, and branded experiences across 2023&ndash;2026.</p>
+
+            <div class="reel-window">
+                <div class="code-titlebar">
+                    <div class="code-dots">
+                        <span class="dot dot-red"></span>
+                        <span class="dot dot-yellow"></span>
+                        <span class="dot dot-green"></span>
+                    </div>
+                    <span class="code-filename">showcase.mp4 &mdash; 5:33 &middot; 1080p</span>
+                    <span class="reel-status" id="reelStatus" data-state="idle">
+                        <span class="reel-status-dot"></span>
+                        <span class="reel-status-label">Ready</span>
+                    </span>
+                </div>
+
+                <div class="reel-stage">
+                    <video
+                        id="reelVideo"
+                        class="reel-video"
+                        muted
+                        playsinline
+                        preload="auto"
+                        poster="videos/showcase-poster.jpg"
+                        disablepictureinpicture
+                        disableremoteplayback
+                        controlslist="nodownload nofullscreen noremoteplayback nopictureinpicture"
+                        x-webkit-airplay="deny"
+                    >
+                        <source src="videos/showcase.mp4" type="video/mp4">
+                    </video>
+
+                    <button class="reel-overlay" id="reelOverlay" aria-label="Play reel">
+                        <span class="reel-play-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                        </span>
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section-label">// about</div>
+            <h2 class="section-title">The Developer</h2>
+            <div class="about-layout">
+                <div class="about-text">
+                    <p class="about-lead">I build worlds people want to live in.</p>
+                    <p>With over 15 years in game development, I've gone from solo projects to leading Cryptic Glitch — a Fortnite Creative studio that's partnered with Wizards of the Coast, TMNT, and Hi-Chew. I specialize in Verse programming within UEFN, creating innovative game systems that push the boundaries of what's possible in Fortnite Creative.</p>
+                    <p>My work spans from custom verse-powered UIs and roguelike systems to full branded experiences that feel like standalone titles. Co-Creator of The Pillars — one of my longest-running and most ambitious projects.</p>
+                    <div class="about-detail-grid">
+                        <div class="about-detail">
+                            <span class="detail-label">Location</span>
+                            <span class="detail-value">United States</span>
+                        </div>
+                        <div class="about-detail">
+                            <span class="detail-label">Studio</span>
+                            <span class="detail-value">Cryptic Glitch</span>
+                        </div>
+                        <div class="about-detail">
+                            <span class="detail-label">Experience</span>
+                            <span class="detail-value">15+ Years</span>
+                        </div>
+                        <div class="about-detail">
+                            <span class="detail-label">Focus</span>
+                            <span class="detail-value">Verse / UEFN</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise -->
+    <section class="section section-alt" id="expertise">
+        <div class="container">
+            <div class="section-label">// expertise</div>
+            <h2 class="section-title">Technical Stack</h2>
+            <p class="section-subtitle">The tools and technologies I work with daily</p>
+
+            <div class="expertise-grid">
+                <div class="expertise-card expertise-featured">
+                    <div class="expertise-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                    </div>
+                    <h3>Verse Programming</h3>
+                    <p>Expert-level Verse development within UEFN. Custom game mechanics, UI systems, roguelike elements, progression systems, and innovative verse-powered experiences.</p>
+                    <div class="expertise-tags">
+                        <span>Verse</span>
+                        <span>UEFN</span>
+                        <span>Game Logic</span>
+                        <span>UI Systems</span>
+                    </div>
+                </div>
+
+                <div class="expertise-card">
+                    <div class="expertise-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                    </div>
+                    <h3>Unreal Engine</h3>
+                    <p>Full Unreal Engine development — Blueprints, C++, level design, and optimization for high-performance experiences.</p>
+                    <div class="expertise-tags">
+                        <span>UE5</span>
+                        <span>Blueprints</span>
+                        <span>C++</span>
+                    </div>
+                </div>
+
+                <div class="expertise-card">
+                    <div class="expertise-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+                    </div>
+                    <h3>Godot Engine</h3>
+                    <p>GDScript and engine-level development for indie projects and rapid prototyping of game concepts.</p>
+                    <div class="expertise-tags">
+                        <span>GDScript</span>
+                        <span>2D/3D</span>
+                        <span>Prototyping</span>
+                    </div>
+                </div>
+
+                <div class="expertise-card">
+                    <div class="expertise-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+                    </div>
+                    <h3>Game Design</h3>
+                    <p>Full-cycle game design — from concept and mechanics to level design, balancing, player experience, and branded content integration.</p>
+                    <div class="expertise-tags">
+                        <span>Level Design</span>
+                        <span>Systems</span>
+                        <span>Brand Collabs</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Verse Code Showcase -->
+            <div class="code-showcase">
+                <div class="code-window">
+                    <div class="code-titlebar">
+                        <div class="code-dots">
+                            <span class="dot dot-red"></span>
+                            <span class="dot dot-yellow"></span>
+                            <span class="dot dot-green"></span>
+                        </div>
+                        <span class="code-filename">game_manager.verse</span>
+                    </div>
+                    <pre class="code-block"><code id="verseCode"></code></pre>
+                    <pre id="verseSource" style="display:none">using { /Fortnite.com/Characters }
+using { /Fortnite.com/Devices }
+using { /Fortnite.com/FortPlayerUtilities }
+using { /Fortnite.com/Game }
+using { /Fortnite.com/Input }
+using { /Fortnite.com/UI }
+using { /UnrealEngine.com/Temporary/Diagnostics }
+using { /UnrealEngine.com/Temporary/SpatialMath }
+using { /UnrealEngine.com/Temporary/UI }
+using { /Verse.org/Colors/NamedColors }
+using { /Verse.org/Random }
+using { /Verse.org/Simulation }
+
+&lt;#Code Written By:
+·▄▄▄▄        • ▌ ▄ ·. ·▄▄▄▄• ▄▄▄· ·▄▄▄▄  ·▄▄▄▄   ▄· ▄▌
+██▪ ██ ▪     ·██ ▐███▪▪▀·.█▌▐█ ▀█ ██▪ ██ ██▪ ██ ▐█▪██▌
+▐█· ▐█▌ ▄█▀▄ ▐█ ▌▐▌▐█·▄█▀▀▀•▄█▀▀█ ▐█· ▐█▌▐█· ▐█▌▐█▌▐█▪
+██. ██ ▐█▌.▐▌██ ██▌▐█▌█▌▪▄█▀▐█ ▪▐▌██. ██ ██. ██  ▐█▀·.
+▀▀▀▀▀•  ▀█▄▀▪▀▀  █▪▀▀▀·▀▀▀ • ▀  ▀ ▀▀▀▀▀• ▀▀▀▀▀•   ▀ •
+#&gt;
+
+game_manager := class(creative_device):
+
+    @editable var RoundTimer : float = 120.0
+    @editable var MaxPlayers : int = 16
+    var IsActive : logic = false
+    var PlayerScores : [player]int = map{}
+
+    OnBegin&lt;override&gt;()&lt;suspends&gt; : void =
+        Print("Initializing game systems...")
+        InitializeRound()
+        loop:
+            Sleep(1.0)
+            if (IsActive?):
+                UpdateGameState()
+
+    InitializeRound() : void =
+        set IsActive = true
+        Print("Round started. Good luck.")</pre>
+                    <div class="code-cursor" id="codeCursor"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work -->
+    <section class="section" id="work">
+        <div class="container">
+            <div class="section-label">// work</div>
+            <h2 class="section-title">Selected Work</h2>
+
+            <!-- Cryptic Glitch -->
+            <div class="work-block">
+                <div class="work-header">
+                    <img src="images/cg-logo.png" alt="Cryptic Glitch" class="work-logo">
+                    <div class="work-header-text">
+                        <h3>Cryptic Glitch</h3>
+                        <p>Owner & Lead Verse Programmer</p>
+                    </div>
+                    <a href="https://crypticglitch.com" target="_blank" rel="noopener" class="btn btn-sm btn-ghost">Visit Site &rarr;</a>
+                </div>
+                <p class="work-desc">Founded and lead a Fortnite Creative studio specializing in brand-powered gaming experiences. From concept to code to ship — responsible for Verse architecture, game systems, and technical direction across all projects.</p>
+
+                <div class="work-highlights">
+                    <div class="highlight-card">
+                        <div class="highlight-badge">Wizards of the Coast</div>
+                        <h4>D&D Deathrun</h4>
+                        <p>Sponsored collaboration. Innovative verse system with roguelike elements and full custom game UI. My most technically ambitious project.</p>
+                        <span class="highlight-code">5806-6430-0158</span>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-badge">TMNT Licensed</div>
+                        <h4>Turtles Tag Tournament</h4>
+                        <p>2D fighting tag tournament game built entirely in Fortnite Creative. Custom combat system and character mechanics.</p>
+                        <span class="highlight-code">3060-3156-4506</span>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-badge">Hi-Chew Incubator Winner</div>
+                        <h4>Hi-Chew Waterworks</h4>
+                        <p>Branded fun run with speedrun elements. Won the Hi-Chew Creator Incubator program.</p>
+                        <span class="highlight-code">2733-9791-3700</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The Pillars -->
+            <div class="work-block">
+                <div class="work-header">
+                    <div class="work-icon-wrap">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="work-icon"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"></path></svg>
+                    </div>
+                    <div class="work-header-text">
+                        <h3>The Pillars</h3>
+                        <p>Co-Creator</p>
+                    </div>
+                </div>
+                <p class="work-desc">One of my longest-running and most ambitious projects. A flagship Fortnite Creative experience that's been continuously developed and iterated on — a testament to what's possible when you push the platform to its limits.</p>
+                <div class="work-highlights">
+                    <div class="highlight-card highlight-solo">
+                        <h4>The Pillars</h4>
+                        <p>The project that started it all. Continuous development, community-driven, and still growing.</p>
+                        <span class="highlight-code">2724-4064-5480</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section section-alt" id="contact">
+        <div class="container">
+            <div class="section-label">// contact</div>
+            <h2 class="section-title">Let's Build Something</h2>
+            <p class="section-subtitle">Have a project in mind? Looking for a Verse programmer? Let's talk.</p>
+
+            <div class="contact-layout">
+                <form action="https://formspree.io/f/xvzvpboq" method="POST" class="contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required placeholder="Your name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required placeholder="you@example.com">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Inquiry Type</label>
+                        <select id="subject" name="subject">
+                            <option value="freelance">Freelance / Contract Work</option>
+                            <option value="collab">Collaboration</option>
+                            <option value="brand">Brand Partnership</option>
+                            <option value="general">General Inquiry</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required placeholder="Tell me about your project..."></textarea>
+                    </div>
+                    <input type="hidden" name="_subject" value="DomZaddy.com Contact Form">
+                    <button type="submit" class="btn btn-primary btn-submit">Send Message</button>
+                </form>
+
+                <div class="contact-sidebar">
+                    <div class="contact-card">
+                        <h4>Connect</h4>
+                        <div class="social-links">
+                            <a href="https://x.com/dom_zaddy" target="_blank" rel="noopener" class="social-link">
+                                <svg viewBox="0 0 24 24" class="social-icon"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                <span>@dom_zaddy</span>
+                            </a>
+                            <a href="https://www.youtube.com/channel/UCWpydqCyWxwpH_ggKQOP9HA" target="_blank" rel="noopener" class="social-link">
+                                <svg viewBox="0 0 24 24" class="social-icon"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                                <span>YouTube</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <h4>Studio</h4>
+                        <a href="https://crypticglitch.com" target="_blank" rel="noopener" class="studio-link">
+                            <img src="images/cg-logo.png" alt="Cryptic Glitch" class="studio-link-logo">
+                            <div>
+                                <span class="studio-link-name">Cryptic Glitch</span>
+                                <span class="studio-link-url">crypticglitch.com</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <img src="images/logo.jpg" alt="DomZaddy" class="footer-logo">
+                <span>Dom<span class="accent">Zaddy</span></span>
+            </div>
+            <p class="footer-copy">&copy; 2025 DomZaddy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Mobile nav ---
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+            navToggle.classList.toggle('open');
+        });
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+                navToggle.classList.remove('open');
+            });
+        });
+
+        // --- Sticky nav ---
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // --- Staggered hero entrance ---
+        document.querySelectorAll('.hero-anim').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            setTimeout(() => {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            }, 300 + parseInt(el.dataset.delay || 0));
+        });
+
+        // --- Hero greeting typing ---
+        const greeting = document.querySelector('.hero-greeting');
+        const greetText = greeting.textContent;
+        greeting.textContent = '';
+        greeting.style.opacity = '1';
+        let gi = 0;
+        function typeGreeting() {
+            if (gi < greetText.length) {
+                greeting.textContent += greetText.charAt(gi);
+                gi++;
+                setTimeout(typeGreeting, 80);
+            }
+        }
+        setTimeout(typeGreeting, 800);
+
+        // --- Counter animation ---
+        function animateCounters() {
+            document.querySelectorAll('.counter').forEach(counter => {
+                if (counter.dataset.animated) return;
+                counter.dataset.animated = 'true';
+                const target = parseInt(counter.dataset.target);
+                const suffix = counter.dataset.suffix || '';
+                const duration = 1500;
+                const start = performance.now();
+                function tick(now) {
+                    const elapsed = now - start;
+                    const progress = Math.min(elapsed / duration, 1);
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    counter.textContent = Math.floor(eased * target) + suffix;
+                    if (progress < 1) requestAnimationFrame(tick);
+                }
+                requestAnimationFrame(tick);
+            });
+        }
+        // Trigger counters when stats become visible
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) animateCounters(); });
+        }, { threshold: 0.5 });
+        document.querySelectorAll('.hero-stats').forEach(el => counterObserver.observe(el));
+
+        // --- Section label typing on scroll ---
+        const labelObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.dataset.typed) {
+                    entry.target.dataset.typed = 'true';
+                    const el = entry.target;
+                    const fullText = el.textContent;
+                    el.textContent = '';
+                    el.classList.add('typing-active');
+                    let ci = 0;
+                    function typeLabel() {
+                        if (ci < fullText.length) {
+                            el.textContent += fullText.charAt(ci);
+                            ci++;
+                            setTimeout(typeLabel, 60);
+                        } else {
+                            el.classList.remove('typing-active');
+                            el.classList.add('typing-done');
+                        }
+                    }
+                    typeLabel();
+                }
+            });
+        }, { threshold: 0.8 });
+        document.querySelectorAll('.section-label').forEach(el => labelObserver.observe(el));
+
+        // --- Staggered scroll reveal ---
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Find sibling cards and stagger them
+                    const parent = entry.target.parentElement;
+                    const siblings = parent.querySelectorAll('.reveal:not(.revealed)');
+                    siblings.forEach((sib, idx) => {
+                        setTimeout(() => sib.classList.add('revealed'), idx * 120);
+                    });
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.expertise-card, .work-block, .highlight-card, .contact-card, .about-detail, .hero-stat, .code-showcase, .reel-window').forEach(el => {
+            el.classList.add('reveal');
+            revealObserver.observe(el);
+        });
+
+        // --- Verse code typing ---
+        const verseCode = document.getElementById('verseSource').textContent.trim();
+
+        const codeEl = document.getElementById('verseCode');
+        const cursorEl = document.getElementById('codeCursor');
+        let codeIdx = 0;
+        let codeStarted = false;
+
+        function typeCode() {
+            if (codeIdx < verseCode.length) {
+                const chunk = verseCode.charAt(codeIdx) === '\n' ? '\n' : verseCode.charAt(codeIdx);
+                codeEl.textContent += chunk;
+                codeIdx++;
+                const speed = chunk === '\n' ? 40 : (Math.random() * 20 + 10);
+                setTimeout(typeCode, speed);
+            } else {
+                cursorEl.style.display = 'none';
+            }
+        }
+
+        const codeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !codeStarted) {
+                    codeStarted = true;
+                    setTimeout(typeCode, 400);
+                }
+            });
+        }, { threshold: 0.3 });
+        const codeShowcase = document.querySelector('.code-showcase');
+        if (codeShowcase) codeObserver.observe(codeShowcase);
+
+        // --- Magnetic buttons ---
+        document.querySelectorAll('.magnetic').forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'translate(0, 0)';
+                btn.style.transition = 'transform 0.4s ease';
+            });
+            btn.addEventListener('mouseenter', () => {
+                btn.style.transition = 'transform 0.1s ease';
+            });
+        });
+
+        // --- Smooth parallax on hero logo ---
+        const heroFrame = document.querySelector('.hero-logo-frame');
+        if (heroFrame && window.innerWidth > 900) {
+            window.addEventListener('mousemove', (e) => {
+                const x = (e.clientX / window.innerWidth - 0.5) * 20;
+                const y = (e.clientY / window.innerHeight - 0.5) * 20;
+                heroFrame.style.transform = `translate(${x}px, ${y}px) rotateY(${x * 0.3}deg) rotateX(${-y * 0.3}deg)`;
+            });
+        }
+
+        // --- Reel: click-to-play (keeps the bright poster visible until user
+        // engages — autoplay would replace the poster with the dark intro frame)
+        (function initReel() {
+            const video = document.getElementById('reelVideo');
+            const overlay = document.getElementById('reelOverlay');
+            const status = document.getElementById('reelStatus');
+            const statusLabel = status ? status.querySelector('.reel-status-label') : null;
+
+            if (!video || !overlay || !status) return;
+
+            // Hard-disable picture-in-picture and remote playback so browsers
+            // can't auto-pop the video into a floating window.
+            try { video.disablePictureInPicture = true; } catch (_) {}
+            try { video.disableRemotePlayback = true; } catch (_) {}
+            video.addEventListener('enterpictureinpicture', (e) => {
+                e.preventDefault();
+                if (document.pictureInPictureElement === video && document.exitPictureInPicture) {
+                    document.exitPictureInPicture().catch(() => {});
+                }
+            });
+
+            const setStatus = (state, label) => {
+                status.dataset.state = state;
+                if (statusLabel) statusLabel.textContent = label;
+            };
+
+            // Pause and reset when the section scrolls fully out of view —
+            // saves bandwidth and brings the poster back when scrolling back.
+            const reelObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting && !video.paused) {
+                        video.pause();
+                        video.currentTime = 0;
+                        overlay.classList.remove('hidden');
+                        setStatus('idle', 'Ready');
+                    }
+                });
+            }, { threshold: 0.05 });
+            reelObserver.observe(video);
+
+            // Click overlay → play (from start if at end, otherwise resume)
+            overlay.addEventListener('click', () => {
+                // If video has ended, restart from beginning. Otherwise resume.
+                if (video.ended || video.currentTime === 0) {
+                    // Fresh play — turn sound on
+                    video.muted = false;
+                    video.currentTime = 0;
+                }
+                const p = video.play();
+                if (p && p.catch) {
+                    p.catch(() => {
+                        // Fall back to muted if browser blocked unmuted play
+                        video.muted = true;
+                        video.play().catch(() => {});
+                    });
+                }
+                overlay.classList.add('hidden');
+                setStatus('playing', 'Playing');
+            });
+
+            // Click on the video itself → toggle pause/play
+            video.addEventListener('click', () => {
+                if (video.paused) {
+                    video.play().catch(() => {});
+                    overlay.classList.add('hidden');
+                    setStatus('playing', 'Playing');
+                } else {
+                    video.pause();
+                    overlay.classList.remove('hidden');
+                    setStatus('idle', 'Paused');
+                }
+            });
+
+            video.addEventListener('pause', () => {
+                if (video.ended) return;
+                setStatus('idle', 'Paused');
+            });
+
+            video.addEventListener('play', () => {
+                setStatus('playing', 'Playing');
+            });
+
+            video.addEventListener('ended', () => {
+                overlay.classList.remove('hidden');
+                setStatus('idle', 'Replay');
+            });
+
+            // Initial label
+            setStatus('idle', 'Ready');
+        })();
+    </script>
+</body>
+</html>
